@@ -7,7 +7,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - [x] 1 Scaffold
 - [x] 2 Shop
 - [x] 3 Pairs
-- [ ] 4 Cakes
+- [x] 4 Cakes
 - [ ] 5 Polish
 - [ ] 6 Hardening
 
@@ -35,3 +35,7 @@ Decisions: explicit Next board; tokens reset per board; automatically removed sp
 Gate3 correction: added minimum-rank test initially used unimported test helper; corrected to imported it. Shell did not stop after chain failure; corrected execution to set -e and amended gate only after verified checks.
 
 Existing rank expectation also needed update after theoretical-minimum correction; fixed to explicit12/34/120 table. Safari27.0 session creation times out even with remote automation, reproduced after driver restart; issue18109 matches. Apple Events alternative requested.
+
+## Gate4
+Cakes logic tested before UI.7tests:3000seed orders, every field grading, step/alignment/limits, free trash, target, multiple-cake fake-timer belt. Build/lint pass.
+Decisions: explicit Add cake (first blank provided); all batter then ordered fillings; glaze at topping only after topping chosen and real icing; six-slot looping belt; no oven. Successful scores compare mistakes; time per shipped cake is displayed.

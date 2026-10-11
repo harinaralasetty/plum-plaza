@@ -15,6 +15,9 @@
 | Pairs rules | `npm test -- tests/unit/pairs.test.ts` | 0 | 13 tests; 200 seeds per level; all boards solved; specials and timer verified |
 | Pairs UI integration | `npm run build && npm run lint` | 0 | Clean |
 
+| Cakes rules | `npm test -- tests/unit/cakes.test.ts` | 0 | 7 tests; 3000seed order validity; each field graded; step and belt checks |
+| Cakes UI integration | `npm run build && npm run lint` | 0 | Clean |
+
 ## Assumptions
 - Pairs timers: 180 s Intermediate, 240 s Advanced per board.
 - Clock adds 20 s.
