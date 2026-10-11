@@ -9,6 +9,9 @@
 
 | Scaffold fresh clone | `git clone . /tmp/plum-scaffold.TRm2Wh; npm ci; npm run build; npm test` | 0 each | 141 packages; 0 vulnerabilities; build clean; 1 core test passed |
 
+| Shop rules | `npm test -- tests/unit/shop.test.ts` | 0 | 14 tests; 7 vectors; 3000 seeded runs; Beginner solver ≤3; limits lock |
+| Shop UI integration | `npm run build && npm run lint` | 0 | TypeScript/build/lint clean |
+
 ## Assumptions
 - Pairs timers: 180 s Intermediate, 240 s Advanced per board.
 - Clock adds 20 s.

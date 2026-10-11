@@ -5,7 +5,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 
 ## Milestones
 - [x] 1 Scaffold
-- [ ] 2 Shop
+- [x] 2 Shop
 - [ ] 3 Pairs
 - [ ] 4 Cakes
 - [ ] 5 Polish
@@ -24,3 +24,6 @@ All implementation and verification gates pending.
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
 
 Scaffold fresh clone confirmed npm ci/build/core test on Node22. Safari automation owner enabled; connection being checked.
+
+## Gate 2
+Shop logic tested before screen: all7 feedback vectors;1000seeds per level; beginner solver<=3guesses; limits and locking.14 tests pass; shared dialogs/navigation and original Plum SVG UI; build/lint pass.

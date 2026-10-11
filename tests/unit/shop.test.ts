@@ -1,0 +1,11 @@
+import { describe,expect,test } from 'vitest';
+import { createGame,feedback,choose,submit,type Color } from '../../src/games/shop/logic';
+import { LEVELS,SHOP } from '../../src/config/constants';
+import {mulberry32} from '../../src/core/rng';
+const map:Record<string,Color>={R:'red',P:'purple',Y:'yellow',B:'blue',G:'green'};
+const code=(s:string)=>[...s].map(c=>map[c]);
+describe('duplicate-aware count feedback',()=>{test.each([['RPYBG','RRYGB',2,2],['RRP','RPR',1,2],['RPY','RRR',1,0],['RRYY','YYYR',1,2],['RPY','RPY',3,0],['RRRR','PPPP',0,0],['RPYB','BYPR',0,4]])('%s versus %s',(s,g,exact,misplaced)=>expect(feedback(code(s as string),code(g as string))).toEqual({exact,misplaced}));});
+test.each(LEVELS)('%s: 1000 seeds valid, reproducible and perfect guess wins',level=>{for(let seed=0;seed<1000;seed++){let s=createGame(level,mulberry32(seed));expect(s).toEqual(createGame(level,mulberry32(seed)));expect(s.secret).toHaveLength(SHOP[level].slots.length);expect(s.secret.every(c=>(SHOP[level].colors as readonly string[]).includes(c))).toBe(true);s.secret.forEach((c,i)=>s=choose(s,i,c));expect(submit(s).status).toBe('won');}});
+test('Beginner tick solver needs at most three guesses for 1000 secrets',()=>{for(let seed=0;seed<1000;seed++){let s=createGame('beginner',mulberry32(seed));for(const color of SHOP.beginner.colors){const last=s.guesses.at(-1);s.draft.forEach((_,i)=>{if(!last?.slots[i])s=choose(s,i,color);});s=submit(s);if(s.status==='won')break;}expect(s.status).toBe('won');expect(s.guesses.length).toBeLessThanOrEqual(3);}});
+test.each(['intermediate','advanced'] as const)('%s loses at limit and locks',level=>{let s=createGame(level,mulberry32(20));s={...s,draft:s.secret.map(c=>c==='red'?'purple':'red')};for(let i=0;i<SHOP[level].limit;i++)s=submit(s);expect(s.status).toBe('lost');expect(submit(s)).toBe(s);});
+test('unlimited beginner and invalid choice ignored',()=>{let s=createGame('beginner',mulberry32(5));expect(choose(s,0,'green')).toBe(s);expect(choose(s,9,'red')).toBe(s);s={...s,draft:s.secret.map(c=>c==='red'?'purple':'red')};for(let i=0;i<30;i++)s=submit(s);expect(s.status).toBe('playing');});
