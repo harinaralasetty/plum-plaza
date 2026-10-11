@@ -69,9 +69,15 @@ CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before 
 | Screenshot-to-keyboard reproduction | `npm run e2e -- --grep 'visual gate\|native keyboard'` | 0 |2passes in1.1min after removing the redundant native-key activation |
 | Final ordered object audit | `npm run audit` | 0 | Lint/types/build clean;39unit tests;15Safari tests pass in4.2min, including all nine results and native keys after screenshots |
 | Final label-wrap refinement | `npm run lint && npm run build && npm run e2e -- --grep 'visual gate\|native keyboard'` | 0 |2Safari cases pass in59.6s;12layouts/24PNGs, native keys/reduced motion; mobile labels wrap inside controls |
+| Fresh remote clone | `python3 /tmp/plum-object-clone-proof.py` | 0 | Clone from GitHub; Node22.23.3,143packages/0vulnerabilities; dev5173/build/preview4173 pass; owned server groups stopped |
+| Clone identity | Python commit + all dist byte comparisons | 0 | Fresh remote clone matches f6a0831 and every local build artifact |
+| UI commit/push | `git commit`; `git push origin main` | 0 each | f6a0831 published with focused UI/tests/docs; original milestone history preserved |
+| Object UI deployment | `gh run watch 38134938500 --exit-status --interval 10` | 0 | [Pages run](https://github.com/harinaralasetty/plum-plaza/actions/runs/38134938500) successful; build23s/deploy9s |
+| Object UI live smoke | `python3 /tmp/plum-pages-smoke.py` | 0 | HTTP200 HTML/JS/CSS identical; native Safari all three picker/play/return paths, Shop object win, Advanced25-part shelf and fallback; AdGuard identified separately; owned window closed |
+| Live visual review | Safari screenshots + local image inspection | 0 | New Shop/Cakes screens render correctly; three live PNGs in ignored screenshots directory |
 | Object source/rules/budget | Python source/dependency/branding and `git diff` assertions | 0 | No dropdowns/runtime requests/excluded branding; exact runtime deps; logic/stores/constants unchanged; JS gzip61,684bytes |
 
-Final15-case ordered audit passed; publication is still in progress. Game choices now use named original objects on native buttons; no gameplay mechanic was added or changed. Live AdGuard verification limits above continue to apply.
+Final15-case ordered audit, final visual refinement, fresh-clone proof and publication passed. Game choices now use named original objects on native buttons; no gameplay mechanic was added or changed. Live AdGuard verification limits above continue to apply.
 
 ## Assumptions
 - Pairs timers are180s Intermediate and240s Advanced, per board.

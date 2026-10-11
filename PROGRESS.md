@@ -18,7 +18,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Use standard native buttons and modal dialogs for keyboard access; the object-controls follow-up removes the former Shop selects.
 
 ## Open items
-Object UI implementation and local verification are complete; publishing and live verification remain. Original build and Pages publication remain complete.
+None. Original implementation, object UI update and their Pages publication are complete.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -112,3 +112,7 @@ Third full audit:14/15passed; native Pairs Enter still missed despite document f
 Final object-UI ordered audit exits0: lint/types/build,39unit tests,15Safari tests (4.2min). All nine results,12full-document layouts, native keys/reduced motion and object/locking checks pass.24PNGs captured; reviewed Shop/Cakes top/bottom views across360/768/1280. Visual inspection identified long mobile ingredient labels extending inside their small pills; added word wrapping/hyphenation, followed by a focused visual/keyboard rerun.
 
 Label refinement passed lint/build and the reproducing visual + keyboard tests (2passes,59.6s). Mobile label screenshot reviewed; wrapping stays within ingredient controls. JS gzip remains61,684bytes. Ready to commit/push the approved UI update and verify the published build.
+
+Published object UI commit `f6a0831`; [Pages run38134938500](https://github.com/harinaralasetty/plum-plaza/actions/runs/38134938500) succeeded (build23s/deploy9s). Fresh remote clone `/var/folders/fz/y2ws1sbx15dggsrd5ts44lvm0000gn/T/plum-object-clone.96hah7am`: Node22.23.3, npm ci143packages/0vulnerabilities, dev5173/preview4173 HTTP200, build clean, all production bytes/commit identical; owned servers stopped.
+
+Live HTTP200 HTML/JS/CSS match the final local build. Safari smoke passed all three pickers/play/return paths, actual Pairs flip/Cakes pan/Shop objects and a Shop win, seeded Advanced25-part shelf and unknown fallback. Shop/Cakes live screenshots reviewed and saved with the town in ignored test-results. AdGuard limitation remains explicitly recorded; user settings/tabs preserved and owned test window closed. Rules/stores/constants unchanged; original art only, no new dependencies or mechanics. No unfinished work or blocker. Release evidence is committed with this completion note; future main updates follow AGENTS.md.

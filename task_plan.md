@@ -17,13 +17,13 @@ Authoritative implementation status and decisions: PROGRESS.md. Supplied mechani
    - [x] Verify successful workflow, live assets and Safari game routes
    - [x] Save and push release evidence; notes deployment also succeeded
 
-8. Object-based game controls — in progress
+8. Object-based game controls — complete
    - [x] Replace Shop dropdowns with illustrated clickable Plum parts
    - [x] Replace Cakes text ingredient buttons with illustrated objects and factory presentation
    - [x] Update Safari flows for real object buttons, keyboard, feedback and result locks
    - [x] Run full audit; review 360/768/1280 screenshots
-   - [ ] Update project memory/docs; commit, push and verify Pages/live Safari
+   - [x] Update project memory/docs; commit, push and verify Pages/live Safari
 
 ## Next Step
 
-Commit/push the verified object UI and verify the published workflow, assets and Safari routes.
+No open implementation or release work. Future authorised updates follow AGENTS.md.

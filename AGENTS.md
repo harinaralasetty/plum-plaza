@@ -8,7 +8,7 @@ The owner authorised pushing this project to the public personal repository `har
 
 ## Sources of truth and current state
 
-- `PROGRESS.md`: authoritative milestone status, decisions, open items and release history. All six implementation milestones are complete. The object-controls follow-up is tracked in PROGRESS.md.
+- `PROGRESS.md`: authoritative milestone status, decisions, open items and release history. All six implementation milestones are complete. The object-controls follow-up is complete and tracked in PROGRESS.md.
 - `AUDIT.md`: commands, observed results, assumptions, deviations and verification limits. Do not claim an unrun check passed.
 - `README.md`: run, play, test and deployment instructions.
 - `plan.md`: historical, redacted mechanics reference; the owner's current brief and recorded decisions take precedence over its research prose.
@@ -48,9 +48,11 @@ npm run audit     # lint -> types -> unit tests -> build -> Safari flows
 
 **Use only Safari for browser work.** E2E uses Playwright's runner with the native Safari Apple Events adapter in `tests/e2e/safari.ts`; it does not launch a Playwright browser. Tests require macOS, Safari's Allow JavaScript from Apple Events, Automation/Accessibility permissions, and Screen Recording for screenshots. Safari 27 WebDriver previously timed out; the owner explicitly authorised Apple Events. Preserve user tabs and unrelated servers; close only windows/processes created for this task.
 
-The object-controls audit passed 39 unit tests and 15 Safari tests, including all nine game/level end states and 360/768/1280px layouts. A final CSS label-wrap refinement passed lint/build and the focused visual + native keyboard tests (2 cases). JS gzip is 61,684 bytes, below the assumed 250,000-byte budget. Rerun relevant checks after changes and write new evidence. The original clean clone passed install/dev/build/preview. Native key input must preserve the already focused iframe; avoid redundant activation immediately before keys. Reduced-motion checks activate all matching CSS media rules.
+The object-controls audit passed 39 unit tests and 15 Safari tests, including all nine game/level end states and 360/768/1280px layouts. A final CSS label-wrap refinement passed lint/build and the focused visual + native keyboard tests (2 cases). JS gzip is 61,684 bytes, below the assumed 250,000-byte budget. Rerun relevant checks after changes and write new evidence. A fresh remote clone of the object UI passed install/dev/build/preview and produced identical assets. Native key input must preserve the already focused iframe; avoid redundant activation immediately before keys. Reduced-motion checks activate all matching CSS media rules.
 
 Release verification on 2026-10-11 repeated that full audit successfully. GitHub Pages [run38131850652](https://github.com/harinaralasetty/plum-plaza/actions/runs/38131850652) deployed commit c7b3ade; live HTML/JS/CSS matched the verified build. Safari live checks covered all three game pickers/play/return paths, a Shop win, seeded links and fallback routing. The owner's AdGuard injects scripts and rewrites DOM CSP on the live origin; preserve settings and distinguish extension behavior from served application bytes. See AUDIT.md for that verification limit.
+
+Object UI release f6a0831 deployed successfully in [run38134938500](https://github.com/harinaralasetty/plum-plaza/actions/runs/38134938500). Live HTML/JS/CSS match the final verified build, and Safari tested actual Shop/Cakes objects, all three game routes and a Shop win. No implementation/release blocker remains.
 
 ## Publishing and future updates
 
