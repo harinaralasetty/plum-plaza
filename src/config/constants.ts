@@ -22,3 +22,5 @@ export const AUDIO={volume:.06,duration:.13,floorVolume:.001,frequencies:{tap:44
 export const PREFS_KEY='plum-plaza:prefs:v1';
 
 export const GLAZE_CHANCE=.5;
+
+export const PAIR_ART={cakeEvery:3,shapeCount:{beginner:4,intermediate:2,advanced:1},hueStep:{beginner:41,intermediate:9,advanced:5}} as const;

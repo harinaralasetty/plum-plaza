@@ -9,7 +9,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - [x] 3 Pairs
 - [x] 4 Cakes
 - [x] 5 Polish
-- [ ] 6 Hardening
+- [x] 6 Hardening
 
 ## Decisions
 - Local HashRouter avoids adding a fourth runtime dependency. Hash query parameters are canonical; outer URL query parameters also accepted.
@@ -18,7 +18,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Use standard native buttons, select controls and modal dialogs for keyboard access.
 
 ## Open items
-Hardening: full Safari gameplay/accessibility audit, final brief checklist and fresh-clone proof.
+None. All six gates, ordered audit and fresh-clone proof are complete. No publication requested or performed.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -45,3 +45,28 @@ Original SVG town/buildings; SVG game motifs and Plums; gloss styling, min44targ
 
 ## Gate 5
 Build, lint and all35unit tests pass on Node22. Safari visual gate passes12 town/Advanced-layout cases at360/768/1280: no horizontal overflow, no overlapping controls, all targets at least44CSSpx. Native window screenshots captured and reviewed. Native select controls needed explicit appearance/height styling in Safari. Art/audio/best panel and navigation review fixes complete.
+
+## Hardening decisions and fixes
+- Best results compare winning turns (Pairs), guesses (Shop), or mistakes (Cakes); ties keep the earlier title. Beginner Shop ranks against a six-guess benchmark because it has no limit. Rank cutoffs are constants, not researched facts.
+- All batter layers precede ordered fillings; the filling array represents spaces between layers. Each belt cake has its own order; trash drops it for free. `none` is explicit for icing/topping; glaze defaults false.
+- Seed accepts safe integers, including negative values, normalised to32bits. Invalid level opens the picker. A new run with the same seed repeats the generated content; player actions and timing still affect outcomes.
+- Production CSP blocks external resources and connections. Development keeps Vite’s local HMR available. No external runtime assets or calls exist.
+- Native Safari keyboard checks use Option-Tab for buttons, Enter for controls, Space/arrow/Enter for native selects, and Escape for leave confirmation. Reduced motion is checked by activating the real CSS media rule through CSSOM; OS settings are preserved.
+- Browser tests use Playwright’s test runner and Safari Apple Events because Safari27WebDriver sessions time out. Apple Events were explicitly authorised by the owner. Runner identifies its new window by ID difference, ensures visibility, waits for picker dialogs as well as headings, and dispatches Pairs actions from Node to avoid background timer throttling. Native select popup events are paced before document queries.
+- Corrupt preference keys with extra segments now fall back to empty. Shared44px target value comes from constants.39unit tests pass, including blocked/corrupt storage and improving best scores.
+- Initial full browser run:7passed/6failed; runner fixes verified in focused reruns (4game/picker cases and3visual/keyboard/locks cases pass). Added per-run CSP assertion initially omitted quote characters; corrected that test literal before restarting the final audit.
+
+Current remaining: final audit, final source/brief checks, milestone6commit and fresh-clone dev/build/preview proof.
+
+Final ordered audit attempt reached13/14browser checks; Advanced cake Box polling timed out. Runner now raises its own Safari window and waits for the actual mistake count after shipping, including the selected-cake check, rather than treating a click as successful. Repeated Advanced Cakes and then full audit are being rerun.
+
+Final brief reconciliation centralised Pairs cake-motif frequency and shape/hue variation. Advanced art now uses the closest look-alikes (one non-cake silhouette, smaller hue steps) while printed numbers remain a non-colour clue.
+
+Accessibility colour review darkened primary-button gradient endpoints (including hover), muted text and footer text; minimum contrast calculations are recorded in AUDIT.md. The complete audit is rerun after that final CSS change.
+
+## Gate 6
+Final ordered npm run audit exits0: lint, strict types,39unit tests, build,14Safari tests pass (4.6min). All nine combinations reach a result with external requests blocked.23screenshots reviewed across360/768/1280; full-document geometry has no small/overlapping controls or horizontal overflow. Final JS gzip59,237bytes; exact dependencies and source scans pass. Implementation/docs reconciliation complete. Fresh clone is the final proof, after this gate commit.
+
+Fresh-clone first attempt: npm ci passed143packages/0vulnerabilities, but the dev HTML assertion rejected an unrelated application already on IPv4 port5173. Preserved that process; dev now binds localhost (IPv6 available) on the same mandated5173. Repeating the exact startup proof in a new clone.
+
+Final proof passed in `/var/folders/fz/y2ws1sbx15dggsrd5ts44lvm0000gn/T/plum-final-clone.u5fttwif`: npm ci143packages/0vulnerabilities; Node22.23.3; exact npm run dev returned app HTML at localhost5173; build clean; npm run preview returned app HTML at localhost4173. Both own process groups stopped; unrelated server preserved. Production asset bytes match audited build. Initial proof readiness mistakenly accepted the other server before ours started; fixed to wait for Plum Plaza’s own HTML. All brief items reconciled, with assumptions/interpretations and browser verification limits in AUDIT.md.

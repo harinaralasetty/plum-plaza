@@ -1,2 +1,2 @@
 import { defineConfig } from 'vitest/config';
-export default defineConfig({base:'./', test:{include:['tests/unit/**/*.test.ts']}});
+export default defineConfig({base:'./', plugins:[{name:'offline-policy',apply:'build',transformIndexHtml:()=>[{tag:'meta',attrs:{'http-equiv':'Content-Security-Policy',content:"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'self'; base-uri 'self'"},injectTo:'head'}]}], test:{include:['tests/unit/**/*.test.ts']}});

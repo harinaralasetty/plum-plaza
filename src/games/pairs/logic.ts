@@ -1,4 +1,4 @@
-import { PAIRS, PAIRS_TIMING, RANK, type Level } from '../../config/constants';
+import { PAIR_ART, PAIRS, PAIRS_TIMING, RANK, type Level } from '../../config/constants';
 import { pick, shuffle, type Rng } from '../../core/rng';
 
 export type Special = 'joker' | 'clock' | 'chef' | 'shuffle' | 'peek';
@@ -13,7 +13,7 @@ function boardTiles(level: Level, rng: Rng): Tile[] {
   const config = PAIRS[level];
   const tiles: Tile[] = [];
   for (let n = 0; n < config.normalPairs; n++) {
-    for (let copy = 0; copy < 2; copy++) tiles.push({ id: `normal-${n}-${copy}`, pair: `normal-${n}`, kind: 'normal', cake: n % 3 === 0, matched: false });
+    for (let copy = 0; copy < 2; copy++) tiles.push({ id: `normal-${n}-${copy}`, pair: `normal-${n}`, kind: 'normal', cake: n % PAIR_ART.cakeEvery === 0, matched: false });
   }
   for (const kind of config.specials) {
     for (let copy = 0; copy < 2; copy++) tiles.push({ id: `${kind}-${copy}`, pair: kind, kind, cake: false, matched: false });

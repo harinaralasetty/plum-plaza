@@ -41,7 +41,7 @@ export function PairsScreen(props: ScreenProps) {
     <p className="game-intro">Turn over two tiles per turn. Match their picture and number to clear them. {props.level === 'beginner' ? 'The free star clears last.' : 'Special pairs lend a little magic.'}</p>
     <Hud items={{ Board: `${game.board + 1}/${config.boards}`, Turns: game.turns, Time: config.seconds ? `${Math.ceil(game.seconds)}s` : 'No timer', 'Peek tokens': game.peekTokens }}/>
     {config.specials.length > 0 && <p className="pairs-instructions">Clock: +{PAIRS_TIMING.clockBonus} seconds. Chef: clears a cake pair. Peek: earns a token; use it to reveal all remaining tiles for {PAIRS_TIMING.peekMs / UI.msPerSecond} seconds, costing one turn per tile.{props.level === 'advanced' && ' Joker: clears a random pair. Shuffle: rearranges remaining tiles.'}</p>}
-    <div className="pairs-board" aria-label="Matching board" style={{ display: 'grid', gridTemplateColumns: `repeat(${config.size}, minmax(44px, 1fr))`, gap: 0, padding: 0, width: '100%' }}>
+    <div className="pairs-board" aria-label="Matching board" style={{ display: 'grid', gridTemplateColumns: `repeat(${config.size}, minmax(${UI.minTarget}px, 1fr))`, gap: 0, padding: 0, width: '100%' }}>
       {game.tiles.map((tile, index) => <PairTile key={tile.id} tile={tile} index={index} level={props.level} revealed={game.selected.includes(index)} locked={game.pending !== null || game.status !== 'playing'} onFlip={() => flip(index)}/>)}
     </div>
     <div className="pairs-actions"><Button disabled={game.peekTokens < 1 || game.pending !== null || game.selected.length > 0 || game.status !== 'playing'} onClick={peek}>Use peek ({game.peekTokens})</Button></div>

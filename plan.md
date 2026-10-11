@@ -1,10 +1,12 @@
-# Plum Place-style web game: build spec and Codex prompt
+> Owner-supplied mechanics reference, redacted for publication. Historical names and links were replaced; research prose is not a factual claim about Plum Plaza. The current build brief and PROGRESS.md decisions take precedence. Original bytes are backed up outside the repository.
+
+# [original game]-style web game: build spec and Codex prompt
 
 Oct 11, 2026 · @Hari Naralasetty
 
 ## Research findings
 
-The game is officially spelled Plum Place, a suite of three mini-games on one home screen, and the build below clones its mechanics in a browser. "Purple Place" is a common misspelling and also the name of unofficial remakes (a Unity build on Steam from 2023 and a mobile app), so check which one you mean.
+The game is officially spelled [original game], a suite of three mini-games on one home screen, and the build below clones its mechanics in a browser. "Purple Place" is a common misspelling and also the name of unofficial remakes (a Unity build on Steam from 2023 and a mobile app), so check which one you mean.
 
 **Origin.** original studio Media built it for original publisher; it shipped with Windows Vista (introduced 30 January 2007) and Windows 7, and was removed from later Windows ([Wikipedia]([source omitted])).
 
@@ -30,7 +32,7 @@ Treat the numbers above as a faithful-enough design target, not a pixel-exact po
 
 ## Legal and naming
 
-Clone the mechanics, not the assets or the name. Plum Place is original publisher's product, so the build uses an original title, original art, original characters and original audio.
+Clone the mechanics, not the assets or the name. [original game] is original publisher's product, so the build uses an original title, original art, original characters and original audio.
 
 - Working title: **Plum Plaza** (change freely). Mini-games: **Plum Pairs**, **Cozy Cakes**, **Plum Shop**. The characters are original blobs called "Plums"; no Plum or Professor Plum likeness.
 - Art: hand-written inline SVG and CSS only (Frutiger Aero feel: glossy gradients, soft shadows, rounded shapes, sky and grass background). No images copied from the original or from clone sites.
@@ -225,7 +227,7 @@ You are a senior front-end engineer building a small, polished browser game from
 </role>
 
 <context>
-The owner wants a browser game collection that plays like the classic Windows mini-game suite Plum Place: three mini-games on one town screen. It must run straight after a git pull: clone, npm ci, npm run dev, and it works with no backend, no API keys and no network access at runtime.
+The owner wants a browser game collection that plays like the classic Windows mini-game suite [original game]: three mini-games on one town screen. It must run straight after a git pull: clone, npm ci, npm run dev, and it works with no backend, no API keys and no network access at runtime.
 The original is original publisher's product, so reproduce only the mechanics. Use an original name (working title: Plum Plaza), original characters (blobs called Plums), original art (hand-written inline SVG and CSS, glossy Frutiger Aero look), and original synthesised sound (Web Audio, muted by default). Never use Plum, original studio or original publisher names or assets anywhere in the repo, because the owner intends to publish it.
 </context>
 
