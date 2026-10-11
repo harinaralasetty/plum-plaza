@@ -46,8 +46,13 @@ Commands run with Node22.23.3 on macOS, Safari27.0. Browser verification uses Pl
 | Publication scans | Python scan of working files and `git rev-list --objects --all` blobs | 0 |52files/87historical blobs; no matched credential patterns or excluded branding; exact runtime deps/source network scan pass; JS gzip59,237bytes |
 | Repository creation | `gh repo create harinaralasetty/plum-plaza --public --source . --remote origin --description ...` | 0 | Public personal repository created; origin configured; original six milestone commits retained |
 | Pages configuration | `gh api --method POST repos/harinaralasetty/plum-plaza/pages -f build_type=workflow`; GET same endpoint | 0 each | Workflow source; public site; HTTPS enforced; expected site URL returned |
+| Release push | `git push -u origin main`; `git ls-remote origin refs/heads/main` | 0 each | Release c7b3ade and full six-milestone history pushed; remote head matched local |
+| First deployment | `gh run watch 38131850652 --repo harinaralasetty/plum-plaza --exit-status --interval 10` | 0 | Successful build18s/deploy12s; [workflow run](https://github.com/harinaralasetty/plum-plaza/actions/runs/38131850652) |
+| Initial live smoke attempts | `python3 /tmp/plum-pages-smoke.py` | 1 | All-resource/CSP assertions exposed AdGuard injection/rewrite; temporary harness also escaped a Unicode tick incorrectly for AppleScript; diagnosed and corrected verification scope/quoting |
+| Live files and Safari smoke | `python3 /tmp/plum-pages-smoke.py` | 0 | HTTP200; HTML/JS/CSS identical to verified local build; three pickers/play/return paths, Pairs flip, Cakes Pan, Shop win, seeded Advanced link and unknown fallback; own window closed |
+| Live visual review | Safari owned-window screencapture, then image inspection | 0 | Published town renders correctly; screenshot `test-results/screenshots/live-town.png` |
 
-CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before publication. Live deployment evidence will be recorded after its workflow completes.
+CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before publication. Live site: https://harinaralasetty.github.io/plum-plaza/ . No implementation or publication blocker remains. Future main pushes deploy automatically.
 
 ## Assumptions
 - Pairs timers are180s Intermediate and240s Advanced, per board.
@@ -89,5 +94,6 @@ Each checked item was reread against implementation and tests. Browser results a
 - No known implementation defect or unfinished original delivery requirement. Fresh clone and ordered audit passed. Follow-up publication is tracked in the release checks above.
 - Safari fractional frame hit geometry is compared at whole CSS-pixel precision; the shared CSS minimum is44px.
 - Safari-only native automation is platform-specific. Other browsers and a full screen-reader session were not run. Labels, focus, native keyboard navigation, modal semantics, text alternatives and target/layout geometry are checked; this is not a formal WCAG certification.
+- On the live origin, the owner's installed AdGuard injects two local-domain scripts and rewrites the page's DOM CSP. Browser settings were preserved. Served HTML/assets (including original CSP) match the audited build exactly; live application resource checks explicitly distinguish AdGuard's identified content/user scripts. The local audit verifies original CSP and external blocking; an extension-free live DOM policy test was not run.
 
 Final clone: `/var/folders/fz/y2ws1sbx15dggsrd5ts44lvm0000gn/T/plum-final-clone.u5fttwif`. Its generated production assets match the audited build byte-for-byte. The dev command uses localhost rather than an IPv4-only bind; an unrelated IPv4 server on5173 was preserved. Readiness checks wait for this app’s title/root rather than accepting any HTTP200.

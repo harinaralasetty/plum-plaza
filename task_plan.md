@@ -9,14 +9,14 @@ Authoritative implementation status and decisions: PROGRESS.md. Supplied mechani
 5. Art, audio, responsive polish, persistence — complete
 6. Browser audit, documentation and clean clone proof — complete
 
-7. Follow-up GitHub Pages release and AGENTS.md memory — in progress
+7. Follow-up GitHub Pages release and AGENTS.md memory — complete
    - [x] Confirm signed-in personal account, available name and static hosting compatibility
    - [x] Prepare pinned workflow and project/run/deploy instructions
    - [x] Run local checks
-   - [ ] Create public repository, configure Pages and push all history
-   - [ ] Verify successful workflow, live assets and Safari game routes
-   - [ ] Save release evidence and push final notes
+   - [x] Create public repository, configure Pages and push all history
+   - [x] Verify successful workflow, live assets and Safari game routes
+   - [x] Save release evidence; final notes push is the closing action
 
 ## Next Step
 
-Commit/push the release to the configured public repository, then verify the Pages workflow and live site.
+Push final release notes, verify its workflow succeeds and leave a clean tree. No implementation or hosting item remains.

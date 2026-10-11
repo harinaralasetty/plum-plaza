@@ -18,7 +18,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Use standard native buttons, select controls and modal dialogs for keyboard access.
 
 ## Open items
-All six gates, ordered audit and fresh-clone proof are complete. Follow-up release is in progress: public GitHub repository, Pages workflow, AGENTS.md project memory, push, deployment and live Safari verification.
+None. All six gates, ordered audit, fresh-clone proof and follow-up GitHub Pages publication are complete. Final release notes are being pushed; no owner action is required.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -80,3 +80,11 @@ Prepared pinned Actions workflow, AGENTS.md and README deployment/run instructio
 Release verification: Node22.23.3 `npm run audit` exits0;39unit tests and14Safari tests pass in4.0min. All nine results, responsive360/768/1280, native keyboard, reduced motion and CSP checks pass. Publication scan of52files/87historical blobs found no matching credentials or excluded branding; runtime scan/exact dependencies pass; JS gzip remains59,237bytes. Created public `https://github.com/harinaralasetty/plum-plaza`; Pages REST confirms workflow source, public site and HTTPS enforced. Next: commit/push, watch workflow, verify live page and record final evidence.
 
 Read-only lookup confirmed the target repository does not exist (expected). The catalogued planning skill path was stale; located and read the installed skill at its current cache path. No unresolved owner question.
+
+Published release commit `c7b3ade` with all original milestone history. GitHub Actions run38131850652 succeeded: build18s/deploy12s. Site: https://harinaralasetty.github.io/plum-plaza/ . Repo: https://github.com/harinaralasetty/plum-plaza . Live HTTP200 HTML/JS/CSS are byte-identical to the local audited build.
+
+Live native Safari smoke passed the town, every building/picker, all three Beginner play screens and return paths, Pairs flip, Cakes Pan input, a Shop win, the Advanced seeded direct link and unknown-route fallback. Town screenshot reviewed and saved at `test-results/screenshots/live-town.png`. Owned test windows were closed; user tabs/settings and unrelated servers preserved.
+
+Verification limitation: Safari's installed AdGuard injects two scripts from its local domain and rewrites DOM CSP on this live origin. Initial all-resource/CSP assertions exposed that browser modification; the served build and policy still match byte-for-byte. Live resource checks explicitly distinguish those identified injected scripts from the app's two same-origin assets. Extension settings were not changed. The local full audit still verifies CSP/external blocking. A temporary live harness also needed Unicode-safe AppleScript quoting for tick feedback; fixed before its successful rerun. No application code change was needed.
+
+AGENTS.md holds requested project memory: constraints, architecture, sources of truth, known mechanics decisions, commands, Safari requirements and future release process. README has the real clone command, live URL and clear deployment instructions. Main pushes now deploy automatically after portable CI checks.

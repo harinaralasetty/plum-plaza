@@ -50,6 +50,8 @@ npm run audit     # lint -> types -> unit tests -> build -> Safari flows
 
 The last implementation audit passed 39 unit tests and 14 Safari tests, including all nine game/level end states and 360/768/1280px layouts. JS gzip was 59,237 bytes, below the assumed 250,000-byte budget. These are recorded historical results: rerun relevant checks after changes and write the new evidence. A clean clone passed install/dev/build/preview.
 
+Release verification on 2026-10-11 repeated that full audit successfully. GitHub Pages [run38131850652](https://github.com/harinaralasetty/plum-plaza/actions/runs/38131850652) deployed commit c7b3ade; live HTML/JS/CSS matched the verified build. Safari live checks covered all three game pickers/play/return paths, a Shop win, seeded links and fallback routing. The owner's AdGuard injects scripts and rewrites DOM CSP on the live origin; preserve settings and distinguish extension behavior from served application bytes. See AUDIT.md for that verification limit.
+
 ## Publishing and future updates
 
 `.github/workflows/pages.yml` installs locked dependencies on Node 22, runs lint, types, unit tests and build, uploads `dist/`, then deploys to the `github-pages` environment. It runs on pushes to `main` and manual dispatch. Actions are pinned by commit. Pages must use the GitHub Actions build source. Publishing is free with this public repository; no custom domain or paid service is required.
