@@ -2,13 +2,15 @@
 
 Three original, local browser games in one little town: Plum Pairs (memory), Cozy Cakes (conveyor orders), and Plum Shop (deduction). All art is hand-written SVG/CSS and audio is synthesised, muted by default. No backend, keys, external fonts or runtime services.
 
+[Play Plum Plaza](https://harinaralasetty.github.io/plum-plaza/) · [Source](https://github.com/harinaralasetty/plum-plaza)
+
 ## Run
 
 Use Node 22 (22.12 or later in the 22 series):
 
 ```sh
-git clone <your-repository-url>
-cd <repository-folder>
+git clone https://github.com/harinaralasetty/plum-plaza.git
+cd plum-plaza
 nvm use # or install Node 22 yourself
 npm ci
 npm run dev
@@ -46,3 +48,11 @@ The owner requested Safari only. The Playwright test runner therefore drives Saf
 Responsive tests render the actual app in same-origin Safari frame viewports, calibrate their measured CSS width (Safari can round fractional frames), and check the entire document’s controls. Geometry is saved in `test-results/screenshots/geometry.json`. The runner captures its own Safari window with macOS screencapture (Screen Recording permission may be needed). The suite reaches an end state for all nine combinations, exercises result actions, guards navigation and tests CSP blocking. Top/bottom screenshots are saved beside the geometry report; visual review remains separate from geometry assertions. Reduced-motion declarations are exercised by activating their media rule in Safari’s CSSOM; the OS preference is not changed.
 
 Rules live in each game’s `logic.ts`; stores only dispatch actions with a retained seeded RNG, and screens own timer scheduling. Tunables are in `src/config/constants.ts`. See [PROGRESS.md](PROGRESS.md) for interpretations and [AUDIT.md](AUDIT.md) for commands, evidence, assumptions and verification limits.
+
+## GitHub Pages
+
+The public repository publishes `dist/` to free GitHub Pages. In Settings → Pages, the source is GitHub Actions. The pinned workflow in `.github/workflows/pages.yml` runs on each push to `main` or manual dispatch: Node 22, `npm ci`, lint, typecheck, unit tests, build, then deployment. A failed check stops deployment. Safari E2E runs locally on macOS, rather than on the Ubuntu build runner.
+
+Relative asset paths (`base: './'`) and hash routes support the repository subpath without rewrites. A seeded live game is https://harinaralasetty.github.io/plum-plaza/#/shop?level=advanced&seed=123 . No environment variables are needed. Best results stay in each browser's local storage and are separate from localhost scores.
+
+After an authorised update, commit and push `main`, check the Actions run, then check the live town and game routes in Safari. [AGENTS.md](AGENTS.md) records project constraints, decisions and maintenance instructions.

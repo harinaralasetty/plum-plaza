@@ -18,7 +18,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Use standard native buttons, select controls and modal dialogs for keyboard access.
 
 ## Open items
-None. All six gates, ordered audit and fresh-clone proof are complete. No publication requested or performed.
+All six gates, ordered audit and fresh-clone proof are complete. Follow-up release is in progress: public GitHub repository, Pages workflow, AGENTS.md project memory, push, deployment and live Safari verification.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -70,3 +70,13 @@ Final ordered npm run audit exits0: lint, strict types,39unit tests, build,14Saf
 Fresh-clone first attempt: npm ci passed143packages/0vulnerabilities, but the dev HTML assertion rejected an unrelated application already on IPv4 port5173. Preserved that process; dev now binds localhost (IPv6 available) on the same mandated5173. Repeating the exact startup proof in a new clone.
 
 Final proof passed in `/var/folders/fz/y2ws1sbx15dggsrd5ts44lvm0000gn/T/plum-final-clone.u5fttwif`: npm ci143packages/0vulnerabilities; Node22.23.3; exact npm run dev returned app HTML at localhost5173; build clean; npm run preview returned app HTML at localhost4173. Both own process groups stopped; unrelated server preserved. Production asset bytes match audited build. Initial proof readiness mistakenly accepted the other server before ours started; fixed to wait for Plum Plaza’s own HTML. All brief items reconciled, with assumptions/interpretations and browser verification limits in AUDIT.md.
+
+## GitHub Pages release — 2026-10-11
+
+Owner explicitly authorised push and publication on free GitHub Pages, and requested clear project memory in AGENTS.md. Use signed-in personal account `harinaralasetty` and available public repository name `plum-plaza`. Preserve six milestone commits. No paid service or custom domain.
+
+Prepared pinned Actions workflow, AGENTS.md and README deployment/run instructions. Keep existing relative Vite base and hash routes. Portable CI checks run on Ubuntu; the full Safari audit runs locally.
+
+Release verification: Node22.23.3 `npm run audit` exits0;39unit tests and14Safari tests pass in4.0min. All nine results, responsive360/768/1280, native keyboard, reduced motion and CSP checks pass. Publication scan of52files/87historical blobs found no matching credentials or excluded branding; runtime scan/exact dependencies pass; JS gzip remains59,237bytes. Created public `https://github.com/harinaralasetty/plum-plaza`; Pages REST confirms workflow source, public site and HTTPS enforced. Next: commit/push, watch workflow, verify live page and record final evidence.
+
+Read-only lookup confirmed the target repository does not exist (expected). The catalogued planning skill path was stale; located and read the installed skill at its current cache path. No unresolved owner question.

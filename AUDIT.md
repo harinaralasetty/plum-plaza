@@ -38,6 +38,17 @@ Commands run with Node22.23.3 on macOS, Safari27.0. Browser verification uses Pl
 | Clone asset identity | Python byte equality on audited/clone `dist/assets/*` | 0 |All production assets identical |
 | Commit gates/clean tree | `git log -6 --oneline; git rev-list --count HEAD; git status --short` | 0 each |Exactly6milestone commits; status empty |
 
+## GitHub Pages release checks — 2026-10-11
+
+| Check | Command | Exit code | Key output |
+|---|---|---|---|
+| Release full local audit | `PATH=/tmp/plum-node/node_modules/node/bin:$PATH npm run audit` | 0 | Node22.23.3; lint/types/build clean;39unit tests;14Safari tests pass in4.0min |
+| Publication scans | Python scan of working files and `git rev-list --objects --all` blobs | 0 |52files/87historical blobs; no matched credential patterns or excluded branding; exact runtime deps/source network scan pass; JS gzip59,237bytes |
+| Repository creation | `gh repo create harinaralasetty/plum-plaza --public --source . --remote origin --description ...` | 0 | Public personal repository created; origin configured; original six milestone commits retained |
+| Pages configuration | `gh api --method POST repos/harinaralasetty/plum-plaza/pages -f build_type=workflow`; GET same endpoint | 0 each | Workflow source; public site; HTTPS enforced; expected site URL returned |
+
+CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before publication. Live deployment evidence will be recorded after its workflow completes.
+
 ## Assumptions
 - Pairs timers are180s Intermediate and240s Advanced, per board.
 - Clock adds20s.
@@ -75,7 +86,7 @@ Each checked item was reread against implementation and tests. Browser results a
 - [x] Final evidence: ordered audit, nine end states with external requests blocked, reviewed screenshots at all requested widths, clean clone run-on-pull, six gate commits and clean working tree. See final gate rows above.
 
 ## Known issues and verification limits
-- No known implementation defect or unfinished delivery requirement. Fresh clone and ordered audit passed. No deployment/publication was performed.
+- No known implementation defect or unfinished original delivery requirement. Fresh clone and ordered audit passed. Follow-up publication is tracked in the release checks above.
 - Safari fractional frame hit geometry is compared at whole CSS-pixel precision; the shared CSS minimum is44px.
 - Safari-only native automation is platform-specific. Other browsers and a full screen-reader session were not run. Labels, focus, native keyboard navigation, modal semantics, text alternatives and target/layout geometry are checked; this is not a formal WCAG certification.
 
