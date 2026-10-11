@@ -18,7 +18,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Use standard native buttons, select controls and modal dialogs for keyboard access.
 
 ## Open items
-None. All six gates, ordered audit, fresh-clone proof and follow-up GitHub Pages publication are complete. Final release notes are being pushed; no owner action is required.
+None. All six gates, ordered audit, fresh-clone proof and follow-up GitHub Pages publication are complete. Project memory and release evidence are committed and pushed; no owner action is required.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -88,3 +88,5 @@ Live native Safari smoke passed the town, every building/picker, all three Begin
 Verification limitation: Safari's installed AdGuard injects two scripts from its local domain and rewrites DOM CSP on this live origin. Initial all-resource/CSP assertions exposed that browser modification; the served build and policy still match byte-for-byte. Live resource checks explicitly distinguish those identified injected scripts from the app's two same-origin assets. Extension settings were not changed. The local full audit still verifies CSP/external blocking. A temporary live harness also needed Unicode-safe AppleScript quoting for tick feedback; fixed before its successful rerun. No application code change was needed.
 
 AGENTS.md holds requested project memory: constraints, architecture, sources of truth, known mechanics decisions, commands, Safari requirements and future release process. README has the real clone command, live URL and clear deployment instructions. Main pushes now deploy automatically after portable CI checks.
+
+Release notes commit471cf14 was pushed and its Pages run38132131295 also succeeded (build20s/deploy12s). Follow-up is complete: no unfinished feature, hosting item or blocker. For future authorised changes, follow AGENTS.md and verify the new workflow/live site.

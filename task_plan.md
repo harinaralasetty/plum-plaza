@@ -15,8 +15,8 @@ Authoritative implementation status and decisions: PROGRESS.md. Supplied mechani
    - [x] Run local checks
    - [x] Create public repository, configure Pages and push all history
    - [x] Verify successful workflow, live assets and Safari game routes
-   - [x] Save release evidence; final notes push is the closing action
+   - [x] Save and push release evidence; notes deployment also succeeded
 
 ## Next Step
 
-Push final release notes, verify its workflow succeeds and leave a clean tree. No implementation or hosting item remains.
+No pending work. For future authorised updates, follow AGENTS.md and verify the new Pages workflow and live site.

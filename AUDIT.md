@@ -51,6 +51,7 @@ Commands run with Node22.23.3 on macOS, Safari27.0. Browser verification uses Pl
 | Initial live smoke attempts | `python3 /tmp/plum-pages-smoke.py` | 1 | All-resource/CSP assertions exposed AdGuard injection/rewrite; temporary harness also escaped a Unicode tick incorrectly for AppleScript; diagnosed and corrected verification scope/quoting |
 | Live files and Safari smoke | `python3 /tmp/plum-pages-smoke.py` | 0 | HTTP200; HTML/JS/CSS identical to verified local build; three pickers/play/return paths, Pairs flip, Cakes Pan, Shop win, seeded Advanced link and unknown fallback; own window closed |
 | Live visual review | Safari owned-window screencapture, then image inspection | 0 | Published town renders correctly; screenshot `test-results/screenshots/live-town.png` |
+| Release notes publication | `git push origin main`; `gh run watch 38132131295 --repo harinaralasetty/plum-plaza --exit-status --interval 10` | 0 each | Notes commit471cf14 pushed; subsequent build20s/deploy12s succeeded |
 
 CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before publication. Live site: https://harinaralasetty.github.io/plum-plaza/ . No implementation or publication blocker remains. Future main pushes deploy automatically.
 
