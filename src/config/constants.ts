@@ -17,8 +17,8 @@ export const ICING_OPTIONS=['none',...BATTER_OPTIONS] as const;
 export const TOPPING_OPTIONS=['none','sprinkles','star candy','heart candy'] as const;
 export const BELT_SLOTS=6;
 export const RANK={bestRatio:1.5,middleRatio:2.5,shopBestRatio:.4,shopMiddleRatio:.7,beginnerGuessBenchmark:6};
-export const UI={minTarget:44,timerTickMs:1000,maxSeed:4294967295};
-export const AUDIO={volume:.06,duration:.13,frequencies:{tap:440,match:660,win:880,wrong:220}};
+export const UI={minTarget:44,timerTickMs:1000,msPerSecond:1000,maxSeed:4294967295};
+export const AUDIO={volume:.06,duration:.13,floorVolume:.001,frequencies:{tap:440,match:660,win:880,wrong:220}};
 export const PREFS_KEY='plum-plaza:prefs:v1';
 
 export const GLAZE_CHANCE=.5;

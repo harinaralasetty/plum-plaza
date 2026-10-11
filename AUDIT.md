@@ -18,6 +18,9 @@
 | Cakes rules | `npm test -- tests/unit/cakes.test.ts` | 0 | 7 tests; 3000seed order validity; each field graded; step and belt checks |
 | Cakes UI integration | `npm run build && npm run lint` | 0 | Clean |
 
+| Polish | `npm run build && npm run lint && npm test` | 0 | Clean build/lint;35 tests pass |
+| Safari visual gate | `npm run e2e -- --grep "visual gate"` | 0 | 1 test,12 layouts; measured360/768/1280; no overflow/control overlap;44px targets; screenshots reviewed |
+
 ## Assumptions
 - Pairs timers: 180 s Intermediate, 240 s Advanced per board.
 - Clock adds 20 s.

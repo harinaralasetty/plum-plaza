@@ -8,7 +8,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - [x] 2 Shop
 - [x] 3 Pairs
 - [x] 4 Cakes
-- [ ] 5 Polish
+- [x] 5 Polish
 - [ ] 6 Hardening
 
 ## Decisions
@@ -18,7 +18,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Use standard native buttons, select controls and modal dialogs for keyboard access.
 
 ## Open items
-All implementation and verification gates pending.
+Hardening: full Safari gameplay/accessibility audit, final brief checklist and fresh-clone proof.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -39,3 +39,9 @@ Existing rank expectation also needed update after theoretical-minimum correctio
 ## Gate4
 Cakes logic tested before UI.7tests:3000seed orders, every field grading, step/alignment/limits, free trash, target, multiple-cake fake-timer belt. Build/lint pass.
 Decisions: explicit Add cake (first blank provided); all batter then ordered fillings; glaze at topping only after topping chosen and real icing; six-slot looping belt; no oven. Successful scores compare mistakes; time per shipped cake is displayed.
+
+## Polish/review milestone
+Original SVG town/buildings; SVG game motifs and Plums; gloss styling, min44targets, 360px8x8 layout, reduced-motion styles, best-results panel and muted synthesised sound. Independent fresh-eyes review found and fixed fixed-unit time conversion, tunable Pairs instruction text, stale leave state on replay, and browser hash/history navigation guard. Safari UI successfully opened own testtab and displayed town. Apple Events recovered after Safari restart; WebDriver remains unavailable. The authorised Safari-only runner selects its own new window by ID difference and never relies on front-window ordering.
+
+## Gate 5
+Build, lint and all35unit tests pass on Node22. Safari visual gate passes12 town/Advanced-layout cases at360/768/1280: no horizontal overflow, no overlapping controls, all targets at least44CSSpx. Native window screenshots captured and reviewed. Native select controls needed explicit appearance/height styling in Safari. Art/audio/best panel and navigation review fixes complete.
