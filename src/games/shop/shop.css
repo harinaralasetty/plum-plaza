@@ -1,0 +1,31 @@
+.shop .shop-layout{grid-template-columns:minmax(0,.7fr) minmax(0,1.5fr);align-items:start}
+.shop .plum-stage{background:radial-gradient(ellipse at 50% 20%,#fff4d6,transparent 65%),linear-gradient(#f4e7f4,#e6dcef);border-color:#b59bc4;position:relative;overflow:hidden}
+.shop .plum-stage:before{content:"";position:absolute;inset:0 0 auto;height:12px;background:repeating-linear-gradient(90deg,#89679e 0 27px,#c5abd0 27px 54px);border-bottom:2px solid #fff8ec}
+.shop .curtain{border-color:#9a77af;background:repeating-linear-gradient(90deg,#795a90 0 19px,#9876ac 19px 38px);box-shadow:inset 0 0 22px #4c315c44,0 8px 0 #b7a3bc,0 10px 0 #fff7e8}
+.shop .curtain.revealed{background:radial-gradient(ellipse at top,#fff8d7,#d0ede2)}
+.shop .shop-sign{margin:24px 0 0;padding-top:14px;border-top:1px solid #ad95b5;color:#664d75;font-size:9px;letter-spacing:2px}
+.shop .guess-panel{background:linear-gradient(135deg,#fffcf0,#f0ead8);border-color:#c9b68c}
+.shop .shop-counter-heading h2{margin:7px 0 20px}
+.shop .guess-builder{display:grid;grid-template-columns:minmax(110px,.55fr) minmax(0,1.45fr);gap:20px;align-items:start}
+.shop .guess-preview{width:100%;position:sticky;top:20px;margin:0;padding:15px 0 10px;text-align:center;background:radial-gradient(ellipse at 50% 45%,#f3e0fa88,transparent 70%)}
+.shop .guess-preview>span{font:italic 19px Georgia,serif;color:#785689;display:block;margin-bottom:9px}
+.shop .guess-preview>svg{max-width:210px;margin:auto;position:relative;z-index:1}
+.shop .plum-pedestal{height:20px;width:90%;border-radius:50%;margin:-17px auto 0;background:linear-gradient(#dbbadb,#b294bf);border:2px solid #927599;box-shadow:0 5px 0 #f9f4dc}
+.shop .parts-shelves{display:grid;gap:12px;min-width:0}
+.shop .parts-shelf{margin:0;min-width:0;padding:8px 10px 12px;border:1px solid #bea67d;border-bottom:5px solid #bca177;border-radius:15px;background:linear-gradient(#fff8e3,#e9dec3);box-shadow:inset 0 2px 0 #fffdf5,0 3px 0 #d6c4a0}
+.shop .parts-shelf legend{padding:0 8px;font:500 16px Georgia,serif;text-transform:capitalize;color:#655238}
+.shop .part-choices{display:grid;gap:6px}
+.shop .part-choice{min-width:var(--target-size);margin:0;padding:4px 2px 7px;border:2px solid transparent;border-radius:12px;position:relative;background:linear-gradient(#ffffffe0,#fffbec);font-size:10px;text-transform:capitalize;color:#4e3d5c;box-shadow:inset 0 1px 0 white,0 2px 4px #70583818}
+.shop .part-choice>.plum-part{display:block;width:100%;height:48px}
+.shop .part-choice[aria-pressed=true]{border-color:#79558d;background:linear-gradient(#fff8ff,#ecdaf4);box-shadow:0 0 0 2px #fff7db,inset 0 1px 0 white}
+.shop .part-choice[aria-pressed=true]:after{content:"✓";position:absolute;right:1px;top:-6px;background:#79558d;color:white;border:2px solid #fff7db;border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:11px;font-weight:700}
+.shop .shop-guess{background:linear-gradient(#826198,#654b78);border-color:#654b78;font-size:16px;letter-spacing:.5px;min-height:52px}
+.shop .shop-guess:hover:not(:disabled){background:linear-gradient(#755686,#604470)}
+.shop .guess-history h3{margin-top:4px}
+.shop .guess-row{grid-template-columns:25px minmax(0,1fr);align-items:center;border-color:#d4c8af}
+.shop .guess-objects{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.shop .guess-object{width:54px;text-align:center;color:#645168}
+.shop .guess-object>.plum-part{display:block;width:54px;height:40px;background:#fffcf1;border:1px solid #d4c5ab;border-radius:9px}
+.shop .guess-object small{display:block;font-size:9px;line-height:1.5;text-transform:capitalize;margin-top:3px}
+@media(max-width:1000px){.shop .guess-builder{display:block}.shop .guess-preview{position:static;max-width:150px;margin:0 auto 24px}.shop .part-choice>.plum-part{height:43px}}
+@media(max-width:600px){.shop .shop-layout{grid-template-columns:1fr}.shop .plum-stage{padding:20px 18px}.shop .curtain{max-width:165px}.shop .shop-sign{margin-top:14px;padding-top:10px}.shop .guess-panel{padding:18px 12px}.shop .guess-preview{max-width:170px}.shop .parts-shelves{gap:15px}.shop .parts-shelf{padding:7px 8px 11px}.shop .part-choices{gap:5px}.shop .part-choice>.plum-part{height:42px}.shop .shop-counter-heading h2{font-size:25px}}

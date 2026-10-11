@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { Safari } from './safari';
-import { LEVELS, PAIRS, CAKES, PREFS_KEY } from '../../src/config/constants';
+import { LEVELS, PAIRS, CAKES, SHOP, PREFS_KEY } from '../../src/config/constants';
 import { mulberry32 } from '../../src/core/rng';
 import * as pairs from '../../src/games/pairs/logic';
 import * as shop from '../../src/games/shop/logic';
@@ -12,7 +12,7 @@ const browserHelpers = `const delay=ms=>new Promise(r=>setTimeout(r,ms));const w
 test.beforeAll(async () => { test.setTimeout(60000); await safari.open(); });
 test.afterAll(async () => { await safari.close(); });
 for (const level of LEVELS) {
-    test(`shop ${level}: seeded win and result navigation`, async () => { await safari.go(`/shop?level=${level}&seed=${seed}`); const secret = shop.createGame(level, mulberry32(seed)).secret; await safari.task(`${browserHelpers}const secret=${JSON.stringify(secret)};for(let i=0;i<secret.length;i++){const select=document.querySelectorAll('select')[i];const setter=Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set;setter.call(select,secret[i]);select.dispatchEvent(new Event('change',{bubbles:true}));await delay(30);}await click('Guess');await wait(()=>document.querySelector('dialog[data-result]'));return document.querySelector('dialog[data-result]').textContent;`); await expect.poll(() => safari.eval('document.querySelector("dialog[data-result]")?.textContent')).toContain('You won!'); await resultFlow('shop', level); });
+    test(`shop ${level}: seeded win and result navigation`, async () => { await safari.go(`/shop?level=${level}&seed=${seed}`); const secret = shop.createGame(level, mulberry32(seed)).secret; await safari.task(`${browserHelpers}const secret=${JSON.stringify(secret)};for(let i=0;i<secret.length;i++){const slot=${JSON.stringify(SHOP[level].slots)}[i];const part=document.querySelector('[data-slot="'+slot+'"][data-color="'+secret[i]+'"]');if(!part||!part.querySelector('svg'))throw Error('Missing illustrated part');part.click();await delay(30);}await click('Guess');await wait(()=>document.querySelector('dialog[data-result]'));return document.querySelector('dialog[data-result]').textContent;`); await expect.poll(() => safari.eval('document.querySelector("dialog[data-result]")?.textContent')).toContain('You won!'); expect(await safari.eval('document.querySelectorAll("select").length')).toBe(0);expect(await safari.eval('document.querySelectorAll(".part-choice:not(:disabled)").length')).toBe(0);await resultFlow('shop', level); });
     test(`pairs ${level}: clear every seeded board`, async () => { test.setTimeout(180000); await safari.go(`/pairs?level=${level}&seed=${seed}`); const rng = mulberry32(seed); let state = pairs.createGame(level, rng); const plan: ({
         type: 'flip';
         index: number;
@@ -40,7 +40,7 @@ for (const level of LEVELS) {
     test(`cakes ${level}: ${level === 'beginner' ? 'ship correct orders' : 'exhaust mistake limit'}`, async () => { test.setTimeout(90000); await safari.go(`/cakes?level=${level}&seed=${seed}`); if (level === 'beginner') {
         const rng = mulberry32(seed);
         const orders = Array.from({ length: CAKES[level].target }, () => cakes.generateOrder(level, rng));
-        await safari.task(`${browserHelpers}const orders=${JSON.stringify(orders)};const ingredient=async(station,value)=>{const b=[...document.querySelectorAll('.cake-station')].find(s=>s.querySelector('h3').textContent.toLowerCase()===station);const control=[...b.querySelectorAll('button')].find(b=>b.textContent===value);control.click();await delay(30);};for(let n=0;n<orders.length;n++){if(n)await click('Add cake');const o=orders[n];await ingredient('pan',o.pan);await click('Right →');await ingredient('batter',o.layers[0].batter);await click('Right →');await click('Right →');await ingredient('icing',o.icing);await click('Right →');await ingredient('topping',o.topping);await click('Right →');await click('Ship selected cake');}await wait(()=>document.querySelector('dialog[data-result]'));return true;`);
+        await safari.task(`${browserHelpers}const orders=${JSON.stringify(orders)};const ingredient=async(station,value)=>{const b=document.querySelector('section.cake-station[data-station="'+station+'"]');const control=[...b.querySelectorAll('button')].find(b=>b.dataset.ingredient===value);if(!control||!control.querySelector('svg'))throw Error('Missing ingredient object');control.click();await delay(30);};for(let n=0;n<orders.length;n++){if(n)await click('Add cake');const o=orders[n];await ingredient('pan',o.pan);await click('Right →');await ingredient('batter',o.layers[0].batter);await click('Right →');await click('Right →');await ingredient('icing',o.icing);await click('Right →');await ingredient('topping',o.topping);await click('Right →');await click('Ship selected cake');}await wait(()=>document.querySelector('dialog[data-result]'));return true;`);
     }
     else {
         for (let n = 0; n < CAKES[level].mistakeLimit; n++) {
@@ -83,11 +83,13 @@ test('visual gate: 360, 768, 1280 without overflow or overlapping controls', asy
 test('result Change level and Town; native keyboard and reduced motion', async () => {
     await safari.viewport(768);
     await safari.go('/');
-    await safari.eval('document.querySelector(".town-header button").focus();true');
+    await safari.eval(`localStorage.setItem(${JSON.stringify(PREFS_KEY)},JSON.stringify({muted:true,best:{}}));true`);
+    await safari.go('/');
+    await safari.focus('.town-header button');
     await safari.keys([36]);
     await expect.poll(() => safari.eval('document.querySelector(".town-header button").getAttribute("aria-pressed")')).toBe('true');
     await safari.go('/pairs?level=beginner&seed=1');
-    await safari.eval('document.querySelector(".pair-tile").focus();true');
+    await safari.focus('.pair-tile');
     await safari.keys([36]);
     await expect.poll(() => safari.eval('document.querySelectorAll(".pair-tile[aria-pressed=true]").length')).toBe(1);
     await safari.keys([48], true);
@@ -96,25 +98,30 @@ test('result Change level and Town; native keyboard and reduced motion', async (
     await expect.poll(() => safari.eval('document.querySelector("dialog")?.getAttribute("aria-label")')).toBe('Leave this round?');
     await safari.click('Keep playing');
     await safari.go('/cakes?level=beginner&seed=1');
-    await safari.eval('[...document.querySelectorAll(".cake-station button")].find(b=>b.textContent==="round").focus();true');
+    await safari.focus('button[data-station=pan][data-ingredient=round]');
     await safari.keys([36]);
     expect(await safari.eval('document.querySelector(".cake-cue").textContent')).toBe('Ingredient added.');
     await safari.go('/shop?level=beginner&seed=123');
-    await safari.eval('document.querySelector("select").focus();true');
-    await safari.keys([49, 125, 36, 53]);
-    expect(await safari.eval('document.querySelector("select").value')).toBe('purple');
-    if (await safari.eval('!!document.querySelector("dialog")'))
-        await safari.click('Keep playing');
+    await safari.focus('[data-slot=eyes][data-color=purple]');
+    await safari.keys([36]);
+    expect(await safari.eval('document.querySelector("[data-slot=eyes][data-color=purple]").getAttribute("aria-pressed")')).toBe('true');
+    await safari.keys([48], true);
+    expect(await safari.eval('document.activeElement.matches("[data-slot=eyes][data-color=yellow]")')).toBe(true);
+    await safari.keys([36]);
+    expect(await safari.eval('document.querySelector("[data-slot=eyes][data-color=yellow]").getAttribute("aria-pressed")')).toBe('true');
     for (const action of ['Change level', 'Town']) {
         await safari.go('/shop?level=beginner&seed=123');
         const secret = shop.createGame('beginner', mulberry32(123)).secret;
-        await safari.task(`${browserHelpers}for(let i=0;i<${JSON.stringify(secret)}.length;i++){const s=document.querySelectorAll('select')[i];Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(s,${JSON.stringify(secret)}[i]);s.dispatchEvent(new Event('change',{bubbles:true}));await delay(30);}await click('Guess');await wait(()=>document.querySelector('dialog[data-result]'));return true;`);
+        await safari.task(`${browserHelpers}for(let i=0;i<${JSON.stringify(secret)}.length;i++){const slot=${JSON.stringify(SHOP.beginner.slots)}[i];document.querySelector('[data-slot="'+slot+'"][data-color="'+${JSON.stringify(secret)}[i]+'"]').click();await delay(30);}await click('Guess');await wait(()=>document.querySelector('dialog[data-result]'));return true;`);
         await safari.click(action);
         await expect.poll(() => safari.eval(action === 'Town' ? '!!document.querySelector(".town-scene")' : 'document.querySelector("dialog")?.textContent.includes("Choose a level")')).toBe(true);
     }
     expect(await safari.eval('document.querySelector(".best-panel").textContent')).toContain('Sharp Sleuth');
-    const motion = await safari.eval(`(()=>{const rule=[...document.styleSheets].flatMap(s=>[...s.cssRules]).find(r=>r.conditionText==='(prefers-reduced-motion: reduce)');if(!rule)throw Error('Missing reduced motion rule');const media=rule.media.mediaText;rule.media.mediaText='all';const style=getComputedStyle(document.querySelector('button'));const value={transition:style.transitionDuration,animation:style.animationName};rule.media.mediaText=media;return value;})()`);
-    expect(motion).toEqual({ transition: '0s', animation: 'none' });
+    for (const [path, selector] of [['/', 'button'], ['/shop?level=advanced&seed=123', '.part-choice'], ['/cakes?level=beginner&seed=123', '.ingredient-object']]) {
+        await safari.go(path);
+        const motion = await safari.eval(`(()=>{const rules=[...document.styleSheets].flatMap(s=>[...s.cssRules]).filter(r=>r.conditionText==='(prefers-reduced-motion: reduce)');if(!rules.length)throw Error('Missing reduced motion rules');const saved=rules.map(r=>r.media.mediaText);rules.forEach(r=>r.media.mediaText='all');const style=getComputedStyle(document.querySelector(${JSON.stringify(selector)}));const value={transition:style.transitionDuration,animation:style.animationName};rules.forEach((r,i)=>r.media.mediaText=saved[i]);return value;})()`);
+        expect(motion).toEqual({ transition: '0s', animation: 'none' });
+    }
 });
 test('Pairs mismatch and Peek use real UI locks and durations', async () => {
     await safari.go('/pairs?level=beginner&seed=12');
@@ -135,4 +142,25 @@ test('Pairs mismatch and Peek use real UI locks and durations', async () => {
     expect(await safari.eval('[...document.querySelectorAll(".hud div")].find(n=>n.querySelector("dt").textContent==="Turns").querySelector("dd").textContent')).toBe('63');
     expect(await safari.eval('document.querySelectorAll(".pair-tile:not(:disabled)").length')).toBe(0);
     await expect.poll(() => safari.eval('document.querySelectorAll(".pair-tile[aria-pressed=true]").length'), { timeout: 4000, intervals: [100] }).toBe(0);
+});
+
+test('object shelves: named choices, selection, ignore cues and intermediate feedback', async () => {
+    await safari.go('/shop?level=advanced&seed=123');
+    expect(await safari.eval('document.querySelectorAll("select").length')).toBe(0);
+    expect(await safari.eval('document.querySelectorAll(".part-choice").length')).toBe(SHOP.advanced.slots.length * SHOP.advanced.colors.length);
+    expect(await safari.eval('[...document.querySelectorAll(".part-choice")].every(b=>b.getAttribute("aria-label")&&b.querySelector("svg")&&b.textContent.trim()===b.dataset.color)')).toBe(true);
+    await safari.eval('document.querySelector("[data-slot=clothes][data-color=green]").click();true');
+    await expect.poll(() => safari.eval('document.querySelector("[data-slot=clothes][data-color=green]").getAttribute("aria-pressed")')).toBe('true');
+    expect(await safari.eval('document.querySelectorAll("[data-slot=clothes][aria-pressed=true]").length')).toBe(1);
+    await safari.go('/shop?level=intermediate&seed=123');
+    await safari.click('Guess');
+    await expect.poll(() => safari.eval('document.querySelectorAll(".guess-row .slot-feedback").length')).toBe(SHOP.intermediate.slots.length);
+    expect(await safari.eval('document.querySelectorAll(".guess-row .plum-part").length')).toBe(SHOP.intermediate.slots.length);
+    await safari.go('/cakes?level=beginner&seed=123');
+    expect(await safari.eval('[...document.querySelectorAll(".ingredient-object")].every(b=>b.dataset.ingredient&&b.querySelector("svg")&&b.textContent.trim())')).toBe(true);
+    await safari.eval('document.querySelector("button[data-station=batter][data-ingredient=vanilla]").click();true');
+    expect(await safari.eval('document.querySelector(".cake-cue").textContent')).not.toBe('Ingredient added.');
+    expect(await safari.eval('[...document.querySelectorAll(".hud div")].find(n=>n.querySelector("dt").textContent==="Mistakes").querySelector("dd").textContent')).toBe('0 / 3');
+    await safari.eval('document.querySelector("button[data-station=pan][data-ingredient=heart]").click();true');
+    expect(await safari.eval('document.querySelector(".cake-cue").textContent')).toBe('Ingredient added.');
 });

@@ -15,10 +15,10 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 - Local HashRouter avoids adding a fourth runtime dependency. Hash query parameters are canonical; outer URL query parameters also accepted.
 - Seed defaults to current timestamp when omitted; explicit seed is an integer.
 - Existing supplied plan redacted for publication; original backed up outside repository.
-- Use standard native buttons, select controls and modal dialogs for keyboard access.
+- Use standard native buttons and modal dialogs for keyboard access; the object-controls follow-up removes the former Shop selects.
 
 ## Open items
-None. All six gates, ordered audit, fresh-clone proof and follow-up GitHub Pages publication are complete. Project memory and release evidence are committed and pushed; no owner action is required.
+Object UI implementation and local verification are complete; publishing and live verification remain. Original build and Pages publication remain complete.
 
 ## Gate 1
 Node 22.23.3; build, core test and lint pass. Dev returned app HTML on 5173. Initial dev tool pins reported vulnerabilities; upgraded to patched tools, npm reports 0 vulnerabilities. Shop/Pairs/Cakes logic prepared independently and excluded from scaffold commit. Safari WebDriver needs Allow remote automation enabled; owner notified.
@@ -90,3 +90,25 @@ Verification limitation: Safari's installed AdGuard injects two scripts from its
 AGENTS.md holds requested project memory: constraints, architecture, sources of truth, known mechanics decisions, commands, Safari requirements and future release process. README has the real clone command, live URL and clear deployment instructions. Main pushes now deploy automatically after portable CI checks.
 
 Release notes commit471cf14 was pushed and its Pages run38132131295 also succeeded (build20s/deploy12s). Follow-up is complete: no unfinished feature, hosting item or blocker. For future authorised changes, follow AGENTS.md and verify the new workflow/live site.
+
+## Object controls follow-up — 2026-10-11
+
+Owner requests game-like objects and polished UI instead of dropdowns. Scope: Shop's actual colour dropdowns become illustrated part choices; Cakes' existing text ingredient buttons become illustrated pans, batter, filling, icing, toppings and box controls. Pairs already uses direct visual tiles. Keep rules/stores, seed replay, routes, limits and dependency set unchanged. Native buttons give keyboard support, text names and pressed selection alongside art. Shop shows every available part/colour directly; no drag/drop requirement or new mechanic. Cakes keeps illegal-press feedback in pure logic.
+
+Affected: Shop/Cakes screens and original SVG art, scoped styles, Safari tests and user/project instructions. Independent Cakes screen/art work delegated; root handles Shop, shared tests and release. Next: implement, full audit, visual review, then push through existing authorised Pages release workflow.
+
+An initial combined notes patch matched a partial findings paragraph incorrectly; patch was atomic and wrote nothing. Corrected to exact paragraphs before proceeding.
+
+Object UI implemented with original SVG parts/ingredients and scoped shop/kitchen styles. No logic/store/constants changes. Initial lint/build/39unit tests passed; full15-test Safari audit is running. Two initial Shop patch formats were rejected atomically (partial findings paragraph; delete/add same target); corrected to exact update operations. Removed obsolete select CSS/adapter binding.
+
+First object-UI audit:14/15Safari tests passed; all gameplay/object/keyboard/layout checks pass. Reduced-motion harness selected only the first matching media rule, now the scoped Cakes rule; corrected to activate every real reduced-motion rule and check Town, Shop part and Cakes ingredient buttons. Temporary live-harness conversion also needed a quoting correction; Python compilation now passes. No application rule or layout failure was found.
+
+Focused keyboard rerun exposed a pre-existing test-order dependency: persisted sound-on state made the test expect the wrong toggle direction. Initialise its one namespaced preference key to muted before native keys, so the case works independently. Visual review also added a collar/buttons to the full Plum's shirt to match its clothing object; final audit includes that art adjustment.
+
+Second full audit:14/15passed again, with native Enter on Pairs missing after the preceding screenshot run. Pairs game/rules are unchanged. Added explicit iframe/window/element focus with document.hasFocus assertion and a short native activation delay in the Safari adapter. Repeating the independent keyboard case before the final full audit; no owner action is needed.
+
+Third full audit:14/15passed; native Pairs Enter still missed despite document focus. Removed redundant Safari window activation immediately before native keys (focus/eval already raises the owned window). The reproducing visual-gate + native-keyboard sequence now passes both cases in1.1min. Final full audit reruns this exact adapter.
+
+Final object-UI ordered audit exits0: lint/types/build,39unit tests,15Safari tests (4.2min). All nine results,12full-document layouts, native keys/reduced motion and object/locking checks pass.24PNGs captured; reviewed Shop/Cakes top/bottom views across360/768/1280. Visual inspection identified long mobile ingredient labels extending inside their small pills; added word wrapping/hyphenation, followed by a focused visual/keyboard rerun.
+
+Label refinement passed lint/build and the reproducing visual + keyboard tests (2passes,59.6s). Mobile label screenshot reviewed; wrapping stays within ingredient controls. JS gzip remains61,684bytes. Ready to commit/push the approved UI update and verify the published build.

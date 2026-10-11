@@ -1,0 +1,61 @@
+/* Cozy Cakes: an illustrated workbench, scoped to the kitchen. */
+.cakes-layout{align-items:start;grid-template-columns:240px minmax(0,1fr);gap:20px}
+.cakes-layout .kitchen-heading h2{font-size:26px;margin:6px 0 14px}
+.cakes-layout .kitchen-heading .eyebrow{font-size:8px;letter-spacing:1.7px}
+.cakes-layout .cake-orders{background:linear-gradient(150deg,#e7efe0,#f3f0db);padding:18px 14px}
+.cakes-layout .cake-order{position:relative;border:1px solid #d3cbb5;border-top:6px solid #cfbcaa;border-radius:5px 5px 14px 14px;background:#fffbed;padding:12px;margin:0 0 15px;box-shadow:0 5px 0 #c6c8b526,0 8px 14px #4964450a}
+.cakes-layout .cake-order:last-child{margin-bottom:0}
+.cakes-layout .cake-order.selected{border:1px solid #488a79;border-top:6px solid #488a79;background:#fffdf0;box-shadow:0 0 0 2px #488a7925,0 8px 14px #4964450a}
+.cakes-layout .cake-order>button{background:#eaf2df;border-color:#cbd9bd;border-radius:8px;padding:9px 5px;font-size:11px;font-weight:700}
+.cakes-layout .order-preview{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px 0;border-bottom:1px dashed #d7d4c1;padding-bottom:8px}
+.cakes-layout .cake-art{width:100%;max-width:140px;display:block;margin:auto}
+.cakes-layout .order-preview .cake-art{margin:0;max-width:90px!important}
+.cakes-layout .order-stamp{max-width:58px;font-size:8px;line-height:1.5;text-align:center;letter-spacing:1.3px;border:1px solid #b996ae;color:#8d718a;border-radius:50%;padding:10px 4px;transform:rotate(-9deg)}
+.cakes-layout .cake-recipe{margin:8px 0;font-size:10px}
+.cakes-layout .cake-recipe>div{grid-template-columns:76px minmax(0,1fr);gap:5px;margin:7px 0}
+.cakes-layout .cake-recipe dd{text-transform:capitalize;font-weight:550}
+.cakes-layout .cake-workspace{padding:22px;background:linear-gradient(140deg,#fffdf5,#f2f5e8)}
+.cakes-layout .cake-workspace>p{line-height:1.5;margin-bottom:14px}
+.cakes-layout .conveyor-frame{border:1px solid #8cab9c;border-radius:17px;padding:8px 6px 4px;background:#b1c7b6;box-shadow:inset 0 2px 0 #dce7ce,0 5px 0 #93ae9c33}
+.cakes-layout .cake-belt{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:7px 3px;border-block:5px solid #6e9486;border-radius:11px;background:repeating-linear-gradient(90deg,#d4e0cc 0 14px,#c6d6c1 14px 16px,#e3e9d3 16px 30px);box-shadow:inset 0 3px 5px #385c4915}
+.cakes-layout .belt-slot{min-width:0;text-align:center;border-radius:8px;transition:background .15s}
+.cakes-layout .belt-slot.aligned{background:#fff9da99;outline:1px dashed #487e66;outline-offset:-1px}
+.cakes-layout .belt-slot>strong{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;line-height:1.2;padding:5px 0;color:#385b50}
+.cakes-layout .station-number{display:inline-grid;place-items:center;border:1px solid #a6bda3;background:#fcf9e8;color:#63836b;width:21px;height:21px;border-radius:50%;font:italic 12px Georgia,serif;flex-shrink:0}
+.cakes-layout .belt-cake{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;min-width:var(--target-size);min-height:80px;padding:0 1px 5px;margin:4px 0;border:1px solid transparent;border-radius:9px;background:#fffdf04d;font-size:10px;box-shadow:none}
+.cakes-layout .belt-cake .cake-art{max-height:69px}
+.cakes-layout .belt-cake>span{border-radius:20px;background:#fffced;padding:2px 7px;line-height:1.3;font-weight:700}
+.cakes-layout .belt-cake[aria-pressed=true]{border:2px solid #427b67;background:#fff7dc;box-shadow:0 2px 5px #37573e22}
+.cakes-layout .empty-belt-slot{min-height:84px;display:grid;place-items:center}
+.cakes-layout .empty-belt-slot>span{width:27px;height:10px;border:1px dashed #8faa90;border-radius:50%;background:#c9d8be55}
+.cakes-layout .belt-return{display:flex;align-items:center;gap:8px;padding:1px 6px;color:#436858;line-height:1;font-size:19px}
+.cakes-layout .belt-return i{flex:1;border-top:2px dashed #7c9e87}
+.cakes-layout .cake-actions{gap:5px;margin:17px 0 12px}
+.cakes-layout .cake-actions button{margin:0;border-radius:10px;padding:9px 12px;background:#fbf9ec;font-size:11px}
+.cakes-layout .cake-cue{border:1px solid #e0d29c;background:#faf0cc;min-height:42px;font-size:12px;margin-bottom:16px}
+.cakes-layout .current-bake{border:1px dashed #bfcfb6;border-radius:12px;padding:12px 14px;background:#eaf1e166}
+.cakes-layout .current-bake .eyebrow{font-size:8px;letter-spacing:1.5px}
+.cakes-layout .current-bake h3{font-size:13px;margin:6px 0 10px}
+.cakes-layout .current-bake .cake-recipe{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 18px;margin-bottom:0}
+.cakes-layout .current-bake .cake-recipe>div{margin:2px 0}
+.cakes-layout .cake-stations{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px;align-items:start}
+.cakes-layout .cake-station{position:relative;padding:10px;background:linear-gradient(#e9eddc,#f5f1df);border:1px solid #c6d0b5;border-radius:15px;box-shadow:0 4px 0 #bfccb02e}
+.cakes-layout .cake-station.station-aligned{border:2px solid #488a79;padding:9px;background:linear-gradient(#e0efdb,#faf5de);box-shadow:0 0 0 3px #488a7917,0 4px 0 #bfccb02e}
+.cakes-layout .cake-station h3{display:flex;align-items:center;gap:6px;font:500 17px Georgia,serif;border-bottom:1px solid #c4cfb7;padding-bottom:9px;margin-bottom:8px}
+.cakes-layout .station-ready{font:10px system-ui;color:#39765f;margin-left:auto}
+.cakes-layout .ingredient-shelf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;background:linear-gradient(transparent 95%,#c4b597 95%);border-radius:8px;padding-bottom:6px}
+.cakes-layout .cake-station .ingredient-object{display:flex;flex-direction:column;align-items:center;justify-content:end;min-width:var(--target-size);min-height:94px;width:100%;padding:3px 2px 6px;margin:0;border:1px solid transparent;border-radius:10px;background:transparent;box-shadow:none;transition:transform .15s,background .15s,border-color .15s}
+.cakes-layout .ingredient-object:hover:not(:disabled){background:#fffdf4;border-color:#b1c4a4;box-shadow:0 4px 6px #486d4515;transform:translateY(-3px)}
+.cakes-layout .ingredient-object:active:not(:disabled){transform:translateY(0);background:#e0eccc}
+.cakes-layout .ingredient-art{display:block;width:100%;max-width:88px;height:72px;overflow:visible;flex-shrink:0}
+.cakes-layout .ingredient-object>span{font-size:10px;font-weight:650;line-height:1.25;text-transform:capitalize;text-align:center;overflow-wrap:anywhere;hyphens:auto;background:#fffaf0;border:1px solid #e0d7c2;border-radius:6px;padding:3px 5px;max-width:100%;min-height:20px}
+.cakes-layout .cake-station p{font-size:10px;line-height:1.5;margin:6px 0;color:#506955}
+.cakes-layout .ingredient-shelf>p{grid-column:1/-1;min-height:93px;display:flex;align-items:center;text-align:center;justify-content:center;padding:6px}
+.cakes-layout .glaze-shelf{border-top:1px dashed #c3cbae;margin-top:10px;padding-top:5px}
+.cakes-layout .shipping-station .shipping-object{min-height:140px;background:#fff9e6;border:1px dashed #c6b18f;padding:8px 4px}
+.cakes-layout .shipping-object .ingredient-art{max-width:122px;height:103px}
+.cakes-layout .shipping-object>span{background:#39765f;color:#fffbed;border-color:#39765f;font-size:10px;padding:5px 7px;text-transform:none}
+@media(max-width:1100px){.cakes-layout{grid-template-columns:215px minmax(0,1fr);gap:14px}.cakes-layout .cake-workspace{padding:16px}.cakes-layout .cake-stations{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.cakes-layout{grid-template-columns:1fr}.cakes-layout .cake-orders{display:flex;flex-wrap:wrap;gap:10px}.cakes-layout .cake-orders>.kitchen-heading,.cakes-layout .cake-orders>p{width:100%}.cakes-layout .cake-orders .kitchen-heading h2{margin-bottom:0}.cakes-layout .cake-order{flex:1;min-width:180px;margin:0}.cakes-layout .order-preview .cake-art{max-width:75px!important}.cakes-layout .cake-order .cake-recipe{font-size:10px}.cakes-layout .cake-stations{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.cakes-layout .cake-workspace{padding:12px}.cakes-layout .cake-orders{padding:14px}.cakes-layout .cake-order{min-width:140px}.cakes-layout .cake-order>button{font-size:10px}.cakes-layout .order-preview{gap:4px}.cakes-layout .order-stamp{font-size:7px;max-width:49px;padding:8px 2px}.cakes-layout .cake-recipe>div{grid-template-columns:66px minmax(0,1fr)}.cakes-layout .cake-stations{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cakes-layout .current-bake .cake-recipe{grid-template-columns:1fr;gap:3px}.cakes-layout .conveyor-frame{padding:5px 2px 2px}.cakes-layout .cake-belt{padding:5px 1px;gap:1px}.cakes-layout .belt-slot>strong{font-size:8px}.cakes-layout .belt-cake{min-height:70px;border-radius:7px}.cakes-layout .belt-cake .cake-art{max-height:53px}.cakes-layout .empty-belt-slot{min-height:74px}.cakes-layout .cake-actions button{padding:9px 10px}.cakes-layout .ingredient-object>span{font-size:10px}.cakes-layout .kitchen-heading h2{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.cakes-layout .ingredient-object,.cakes-layout .belt-slot{transition:none}.cakes-layout .ingredient-object:hover:not(:disabled){transform:none}}

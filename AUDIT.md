@@ -55,6 +55,24 @@ Commands run with Node22.23.3 on macOS, Safari27.0. Browser verification uses Pl
 
 CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before publication. Live site: https://harinaralasetty.github.io/plum-plaza/ . No implementation or publication blocker remains. Future main pushes deploy automatically.
 
+## Object UI follow-up checks — 2026-10-11
+
+| Check | Command | Exit code | Key output |
+|---|---|---|---|
+| Initial object integration | `npm run lint; npm run build; npm test` on Node22 | 0 each | Original part/ingredient SVGs integrate;39unit tests pass |
+| First full object audit | `npm run audit` | 1 |39unit tests and14/15Safari checks pass; reduced-motion test activated only the first matching stylesheet rule |
+| Initial focused rerun | `npm run e2e -- --grep 'native keyboard'` | 1 | Pre-existing mute-state dependency exposed when running alone; initialise the namespaced key before keyboard inputs |
+| Corrected focused keyboard/motion | `npm run build && npm run e2e -- --grep 'native keyboard'` | 0 |1case passes independently; object buttons, result actions and all reduced-motion rules exercised |
+| Second full object audit | `npm run audit` | 1 |14/15Safari cases; native Enter lost iframe focus after screenshot run; added explicit frame/window/element focus assertion and activation delay |
+| Repeated focused keyboard | `npm run e2e -- --grep 'native keyboard' --repeat-each=2` | 0 |2passes in48.4s with explicit document focus; full audit rerun follows |
+| Third full object audit | `npm run audit` | 1 |14/15Safari checks; redundant activation before native keys still disturbed iframe focus |
+| Screenshot-to-keyboard reproduction | `npm run e2e -- --grep 'visual gate\|native keyboard'` | 0 |2passes in1.1min after removing the redundant native-key activation |
+| Final ordered object audit | `npm run audit` | 0 | Lint/types/build clean;39unit tests;15Safari tests pass in4.2min, including all nine results and native keys after screenshots |
+| Final label-wrap refinement | `npm run lint && npm run build && npm run e2e -- --grep 'visual gate\|native keyboard'` | 0 |2Safari cases pass in59.6s;12layouts/24PNGs, native keys/reduced motion; mobile labels wrap inside controls |
+| Object source/rules/budget | Python source/dependency/branding and `git diff` assertions | 0 | No dropdowns/runtime requests/excluded branding; exact runtime deps; logic/stores/constants unchanged; JS gzip61,684bytes |
+
+Final15-case ordered audit passed; publication is still in progress. Game choices now use named original objects on native buttons; no gameplay mechanic was added or changed. Live AdGuard verification limits above continue to apply.
+
 ## Assumptions
 - Pairs timers are180s Intermediate and240s Advanced, per board.
 - Clock adds20s.

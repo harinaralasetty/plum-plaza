@@ -28,10 +28,10 @@ Preview uses http://localhost:4173. Serve `dist/` from any static host. Hash rou
 ## Play
 
 - Pairs: flip two tiles. Matched tiles disappear; mismatches lock for 800 ms. The free star clears last. Timed levels have specials and multiple boards; use Next board after clearing one. Peek costs a turn for every revealed tile.
-- Cakes: select a cake, then operate only the station under it. Add every batter layer, then fillings in order, then icing and topping. Select `none` explicitly when the order calls for it. Advanced glaze is applied at Topping after an iced cake has its topping. Beginner has Left/Right; higher levels loop automatically. Add cake starts another order when the pan slot is empty. Ship at Box; Trash is free.
-- Shop: choose every slot’s colour, then Guess. Colours may repeat. Beginner and Intermediate show ticks/crosses per slot; Advanced shows exact/misplaced counts. The curtain lifts at the end.
+- Cakes: select a cake, then click the illustrated pan, batter bowl, filling jar, icing bag or topping under its matching station. Add every batter layer, then fillings in order, then icing and topping. Select `none` explicitly when the order calls for it. Advanced glaze is applied at Topping after an iced cake has its topping. Beginner has Left/Right; higher levels loop automatically. Add cake starts another order when the pan slot is empty. Ship at Box; Trash is free.
+- Shop: click illustrated eyes, noses, mouths, toppers and clothes on the shelves to dress your Plum, then Guess. A tick badge marks each chosen part. Colours may repeat. Beginner and Intermediate show ticks/crosses per slot; Advanced shows exact/misplaced counts. The curtain lifts at the end.
 
-Tab, Enter and native select keyboard controls work throughout. Safari may require Option-Tab or its “Press Tab to highlight each item” setting to include buttons. Escape opens leave confirmation. Browser hash/back navigation is also guarded during play. Timers continue while leave confirmation is open. Sound and best winning results persist under `plum-plaza:prefs:v1`; unavailable or corrupt storage falls back safely. Restart repeats the current seed.
+Tab, Enter and Space work on the illustrated object buttons throughout. Names and tick badges identify the selected Shop parts; Cakes highlights the station under the selected cake. Safari may require Option-Tab or its “Press Tab to highlight each item” setting to include buttons. Escape opens leave confirmation. Browser hash/back navigation is also guarded during play. Timers continue while leave confirmation is open. Sound and best winning results persist under `plum-plaza:prefs:v1`; unavailable or corrupt storage falls back safely. Restart repeats the current seed.
 
 ## Verification
 

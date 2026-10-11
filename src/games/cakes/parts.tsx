@@ -1,15 +1,31 @@
-import type {CakeRecipe} from './logic';
-const colors:Record<string,string>={vanilla:'#f6d894',chocolate:'#77432c',strawberry:'#ec8ea8',red:'#c83948',green:'#4d8d57',white:'#fff8e9',none:'transparent'};
+import type {CakeRecipe,Station} from './logic';
+const colors:Record<string,string>={vanilla:'#f6d894',chocolate:'#77432c',strawberry:'#ec8ea8',red:'#c83948',green:'#4d8d57',white:'#fff8e9',none:'#eee8dc'};
+const star='M50 25 l7 15 16 2 -12 11 3 17 -14 -8 -14 8 3 -17 -12 -11 16 -2Z';
+const heart='M50 36 C29 12 12 42 50 67 C88 42 71 12 50 36Z';
+export function IngredientArt({station,ingredient}:{station:Station;ingredient:string}){
+ const color=colors[ingredient]??'#efcf84';
+ return <svg viewBox="0 0 100 90" aria-hidden="true" focusable="false" className="ingredient-art">
+ <ellipse cx="50" cy="81" rx="36" ry="5" fill="#36574e" opacity=".12"/>
+ {station==='pan'&&<g stroke="#617d80" strokeWidth="3" strokeLinejoin="round"><path d={ingredient==='heart'?'M50 31 C18 2 4 43 50 73 C96 43 82 2 50 31Z':ingredient==='square'?'M17 22 L77 17 87 64 24 73Z':'M12 46 C12 8 88 8 88 46 L84 60 C76 82 24 82 16 60Z'} fill="#9cb1b1"/><path d={ingredient==='heart'?'M50 39 C25 16 17 44 50 64 C83 44 75 16 50 39Z':ingredient==='square'?'M25 28 L71 24 78 57 30 64Z':'M21 43 A29 20 0 1 0 79 43 A29 20 0 1 0 21 43'} fill="#dae5df"/><path d="M28 29 Q38 23 43 25" fill="none" stroke="#fffdf3" strokeLinecap="round"/></g>}
+ {station==='batter'&&<g stroke="#6f5d4e" strokeWidth="2.5" strokeLinejoin="round"><path d="M68 12 L62 50" stroke="#b79169" strokeWidth="6"/><path d="M12 43 Q50 27 88 43 L80 65 Q50 84 20 65Z" fill="#9ac7bd"/><ellipse cx="50" cy="43" rx="38" ry="13" fill={color}/><path d="M31 44 Q48 33 66 43 Q53 54 43 45" fill="none" stroke="#fff8eb" opacity=".55"/><path d="M22 56 Q42 72 74 57" fill="none" stroke="#deefe7"/></g>}
+ {station==='filling'&&<g stroke="#67564e" strokeWidth="2.5"><rect x="26" y="22" width="49" height="54" rx="10" fill="#f8fcf1"/><path d="M29 43 Q43 36 71 43 V65 Q50 75 29 65Z" fill={color}/><rect x="23" y="15" width="55" height="13" rx="4" fill="#9ab49d"/><path d="M30 18 H69" stroke="#e4eddb"/><rect x="34" y="43" width="32" height="20" rx="4" fill="#fff7df"/>{ingredient==='red'?<path d="M50 47 C35 47 40 60 50 60 C60 60 65 47 50 47" fill={color}/>:ingredient==='green'?<path d="M42 58 Q40 44 60 47 Q56 60 42 58Z" fill={color}/>:<path d="M42 58 Q42 49 50 46 Q58 49 58 58Z" fill="#f2df9c"/>}</g>}
+ {station==='icing'&&(ingredient==='none'?<g stroke="#b29480" strokeWidth="3" fill="#fffae9"><ellipse cx="50" cy="51" rx="34" ry="21"/><ellipse cx="50" cy="51" rx="24" ry="13"/><path d="M28 30 L73 72"/></g>:<g stroke="#806152" strokeWidth="2.5" strokeLinejoin="round"><path d="M27 18 Q52 4 76 23 L62 54 45 69 31 52Z" fill={color}/><path d="M27 18 L38 29 67 32 76 23" fill="#fff8e9" opacity=".55"/><path d="M45 69 L54 78 62 54" fill="#c6d7d2"/><path d="M54 78 Q66 70 74 77" fill="none" stroke={color} strokeWidth="6"/><path d="M38 29 L45 59" stroke="#fff8e9" opacity=".5"/></g>)}
+ {station==='topping'&&<g stroke="#aa8765" strokeWidth="2"><ellipse cx="50" cy="62" rx="37" ry="15" fill="#dcbda1"/><ellipse cx="50" cy="56" rx="37" ry="15" fill="#fff4dc"/>{ingredient==='star candy'?<path d={star} fill="#f2c663"/>:ingredient==='heart candy'?<path d={heart} fill="#df7e9d"/>:ingredient==='sprinkles'?<g strokeWidth="5" strokeLinecap="round"><path d="M31 45 l5 7 M56 34 l5 7 M67 52 l6 -4" stroke="#df7e9d"/><path d="M40 60 l7 -3 M48 43 l-4 6 M65 63 l6 2" stroke="#7d6997"/><path d="M30 61 l-3 -7 M53 54 l7 -4" stroke="#74a68b"/></g>:<path d="M31 35 L69 72" stroke="#b29480" strokeWidth="3"/>}</g>}
+ {station==='glaze'&&<g stroke="#937752" strokeWidth="2.5" strokeLinejoin="round"><path d="M30 28 H69 L76 71 Q51 84 24 71Z" fill="#f0cd76"/><path d="M42 12 H59 V29 H42Z" fill="#c8ddd0"/><path d="M42 13 L63 8" strokeWidth="5"/><path d="M37 43 Q50 34 64 44" fill="none" stroke="#fff3c2" strokeWidth="5"/>{ingredient==='false'&&<path d="M23 21 L78 75" stroke="#b27476" strokeWidth="4"/>}</g>}
+ {station==='box'&&<g stroke="#97724f" strokeWidth="2.5" strokeLinejoin="round"><path d="M20 35 L50 23 81 35 79 69 50 81 21 67Z" fill="#d6b992"/><path d="M20 35 L50 48 81 35 M50 48 V81" fill="none"/><path d="M20 35 L9 22 40 12 50 23 61 13 92 25 81 35 50 48Z" fill="#f2dbb6"/><path d="M34 52 L43 56 V66 L34 62Z" fill="#e1efda"/><path d="M56 59 L71 53" stroke="#f8e9cd" strokeWidth="5"/></g>}
+ </svg>;
+}
 export function Recipe({recipe}:{recipe:CakeRecipe}){return <dl className="cake-recipe"><div><dt>Pan</dt><dd>{recipe.pan??'Choose pan'}</dd></div><div><dt>Batter layers</dt><dd>{recipe.layers.length?recipe.layers.map((l,i)=>`${i+1}: ${l.batter}`).join(' → '):'Not added'}</dd></div><div><dt>Fillings</dt><dd>{recipe.fillings.length?recipe.fillings.map((f,i)=>`${i+1}: ${f}`).join(' → '):'None added'}</dd></div><div><dt>Icing</dt><dd>{recipe.icing??'Not selected'}</dd></div><div><dt>Topping</dt><dd>{recipe.topping??'Not selected'}</dd></div><div><dt>Glaze</dt><dd>{recipe.glaze?'Yes':'No'}</dd></div></dl>;}
 export function CakeArt({recipe}:{recipe:CakeRecipe}){
- const shape=recipe.pan==='heart'?'M50 32 C14 1 0 45 50 77 C100 45 86 1 50 32':recipe.pan==='square'?'M12 18 H88 V78 H12 Z':'M8 48 A42 30 0 1 0 92 48 A42 30 0 1 0 8 48';
- return <svg viewBox="0 0 100 110" aria-hidden="true" className="cake-art" style={{width:'100%',maxWidth:140,display:'block',margin:'auto'}}>
-  <ellipse cx="50" cy="99" rx="47" ry="7" fill="#c7dddb"/>
-  {recipe.layers.map((layer,i)=><g key={i}><rect x="13" y={82-i*12} width="74" height="12" rx="4" fill={colors[layer.batter]} stroke="#744c36"/>{recipe.fillings[i]&&<rect x="13" y={81-i*12} width="74" height="3" fill={colors[recipe.fillings[i]]}/>}</g>)}
-  <path d={shape} fill={recipe.icing&&recipe.icing!=='none'?colors[recipe.icing]:recipe.layers[0]?colors[recipe.layers[0].batter]:'#ddd6ca'} stroke="#75594c" strokeWidth="3"/>
-  {recipe.topping==='sprinkles'&&[25,40,55,70].map((x,i)=><path key={x} d={`M${x} ${40+i%2*12} l5 5`} stroke={i%2?'#5744a0':'#df456f'} strokeWidth="3"/>)}
-  {recipe.topping==='star candy'&&<path d="M50 30 l5 12 13 1 -10 8 3 13 -11 -7 -11 7 3 -13 -10 -8 13 -1Z" fill="#ffd45f" stroke="#aa7827"/>}
-  {recipe.topping==='heart candy'&&<path d="M50 42 C32 23 25 47 50 64 C75 47 68 23 50 42" fill="#db4477"/>}
-  {recipe.glaze&&<path d="M24 35 Q47 23 72 37" fill="none" stroke="white" strokeWidth="5" opacity=".75"/>}
+ const shape=recipe.pan==='heart'?heart:recipe.pan==='square'?'M17 24 L77 20 85 63 23 69Z':'M10 45 A40 26 0 1 0 90 45 A40 26 0 1 0 10 45';
+ return <svg viewBox="0 0 100 110" aria-hidden="true" focusable="false" className="cake-art">
+ <ellipse cx="50" cy="99" rx="47" ry="7" fill="#b7d6c8"/><ellipse cx="50" cy="93" rx="45" ry="7" fill="#fffaf0" stroke="#b8bda8"/>
+ {recipe.layers.map((layer,i)=><g key={i}><rect x="15" y={79-i*11} width="70" height="12" rx="5" fill={colors[layer.batter]} stroke="#89624b" strokeWidth="2"/>{recipe.fillings[i]&&<rect x="16" y={78-i*11} width="68" height="3" rx="1" fill={colors[recipe.fillings[i]]}/>}</g>)}
+ <path d={shape} fill={recipe.icing&&recipe.icing!=='none'?colors[recipe.icing]:recipe.layers[0]?colors[recipe.layers[0].batter]:'#b8c9c5'} stroke="#806657" strokeWidth="2.5"/>
+ {!recipe.pan&&<ellipse cx="50" cy="45" rx="31" ry="17" fill="#e0e8df" stroke="#8da5a0" strokeWidth="2"/>}
+ {recipe.topping==='sprinkles'&&[25,40,55,70].map((x,i)=><path key={x} d={`M${x} ${38+i%2*12} l5 5`} stroke={i%2?'#7d6997':'#df7e9d'} strokeWidth="4" strokeLinecap="round"/>)}
+ {recipe.topping==='star candy'&&<path d={star} transform="translate(12 10) scale(.76)" fill="#f2c663" stroke="#aa8765"/>}
+ {recipe.topping==='heart candy'&&<path d={heart} transform="translate(12 6) scale(.76)" fill="#df7e9d" stroke="#b36480"/>}
+ {recipe.glaze&&<path d="M25 35 Q47 23 73 37 M29 41 L38 43" fill="none" stroke="#fffdf0" strokeWidth="4" opacity=".8" strokeLinecap="round"/>}
  </svg>;
 }
