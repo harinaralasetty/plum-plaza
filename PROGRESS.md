@@ -6,7 +6,7 @@ Six gated commits; React 18, strict TypeScript, Vite, Zustand, local HashRouter;
 ## Milestones
 - [x] 1 Scaffold
 - [x] 2 Shop
-- [ ] 3 Pairs
+- [x] 3 Pairs
 - [ ] 4 Cakes
 - [ ] 5 Polish
 - [ ] 6 Hardening
@@ -27,3 +27,11 @@ Scaffold fresh clone confirmed npm ci/build/core test on Node22. Safari automati
 
 ## Gate 2
 Shop logic tested before screen: all7 feedback vectors;1000seeds per level; beginner solver<=3guesses; limits and locking.14 tests pass; shared dialogs/navigation and original Plum SVG UI; build/lint pass.
+
+## Gate 3
+Pairs logic tested before screen.13 tests: 200seeds per level/solver all boards; all5 specials; input locks, Peek cost, timer clamp, deterministic replay. UI/store integrated; build/lint pass.
+Decisions: explicit Next board; tokens reset per board; automatically removed specials do not cascade; rank minimum deducts possible Chef/Joker free pairs (12/34/120). Sprout/Bloom/Plum Master ratios in constants. Modal leave confirmation does not pause timers.
+
+Gate3 correction: added minimum-rank test initially used unimported test helper; corrected to imported it. Shell did not stop after chain failure; corrected execution to set -e and amended gate only after verified checks.
+
+Existing rank expectation also needed update after theoretical-minimum correction; fixed to explicit12/34/120 table. Safari27.0 session creation times out even with remote automation, reproduced after driver restart; issue18109 matches. Apple Events alternative requested.

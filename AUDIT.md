@@ -12,6 +12,9 @@
 | Shop rules | `npm test -- tests/unit/shop.test.ts` | 0 | 14 tests; 7 vectors; 3000 seeded runs; Beginner solver ≤3; limits lock |
 | Shop UI integration | `npm run build && npm run lint` | 0 | TypeScript/build/lint clean |
 
+| Pairs rules | `npm test -- tests/unit/pairs.test.ts` | 0 | 13 tests; 200 seeds per level; all boards solved; specials and timer verified |
+| Pairs UI integration | `npm run build && npm run lint` | 0 | Clean |
+
 ## Assumptions
 - Pairs timers: 180 s Intermediate, 240 s Advanced per board.
 - Clock adds 20 s.
