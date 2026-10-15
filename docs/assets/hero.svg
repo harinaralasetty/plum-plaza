@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img" aria-labelledby="t d">
+  <title id="t">Plum Plaza: three mini-games in one browser town</title>
+  <desc id="d">Banner listing the three games: Plum Pairs, a memory tile game; Cozy Cakes, a conveyor cake-order game; and Plum Shop, a colour deduction game where you match a hidden Plum. Each has Beginner, Intermediate and Advanced levels. It runs offline in the browser with sound muted by default.</desc>
+  <style>
+    .b{fill:#161b22;stroke:#30363d}
+    .n{font:700 34px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;fill:#e6edf3}
+    .t{font:15px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;fill:#8b949e}
+    .h{font:600 17px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;fill:#e6edf3}
+    .s{font:13px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;fill:#8b949e}
+    .m{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;fill:#7d8590}
+  </style>
+  <rect x="1" y="1" width="878" height="298" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <text class="n" x="440" y="62" text-anchor="middle">Plum Plaza</text>
+  <text class="t" x="440" y="90" text-anchor="middle">Three mini-games in one little town. Runs in your browser, offline.</text>
+  <rect class="b" x="32" y="120" width="256" height="112" rx="10"/>
+  <rect x="32" y="120" width="256" height="5" rx="2" fill="#d2a8ff"/>
+  <text class="h" x="160" y="158" text-anchor="middle">Plum Pairs</text>
+  <text class="s" x="160" y="184" text-anchor="middle">Memory: flip two tiles, find pairs</text>
+  <text class="m" x="160" y="210" text-anchor="middle">#/pairs</text>
+  <rect class="b" x="312" y="120" width="256" height="112" rx="10"/>
+  <rect x="312" y="120" width="256" height="5" rx="2" fill="#ffa198"/>
+  <text class="h" x="440" y="158" text-anchor="middle">Cozy Cakes</text>
+  <text class="s" x="440" y="184" text-anchor="middle">Build cake orders on a conveyor belt</text>
+  <text class="m" x="440" y="210" text-anchor="middle">#/cakes</text>
+  <rect class="b" x="592" y="120" width="256" height="112" rx="10"/>
+  <rect x="592" y="120" width="256" height="5" rx="2" fill="#7ee787"/>
+  <text class="h" x="720" y="158" text-anchor="middle">Plum Shop</text>
+  <text class="s" x="720" y="184" text-anchor="middle">Deduction: match the hidden Plum</text>
+  <text class="m" x="720" y="210" text-anchor="middle">#/shop</text>
+  <text class="m" x="440" y="270" text-anchor="middle">Beginner · Intermediate · Advanced  |  seeded replays  |  no backend  |  sound muted by default</text>
+</svg>

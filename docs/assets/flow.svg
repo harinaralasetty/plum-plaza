@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="150" viewBox="0 0 880 150" role="img" aria-labelledby="t d">
+  <title id="t">Plum Plaza architecture</title>
+  <desc id="d">The hash route picks a game, level and seed; a Zustand store keeps a seeded random generator and dispatches actions; pure logic.ts functions apply the rules; the screen renders SVG and CSS and schedules timers.</desc>
+  <style>
+    .b{fill:#0d1117;stroke:#30363d}.h{font:600 14px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;fill:#e6edf3}
+    .s{font:12px ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;fill:#8b949e}.a{stroke:#58a6ff;stroke-width:2;fill:none}
+  </style>
+  <defs><marker id="m" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L7 4L0 8z" fill="#58a6ff"/></marker></defs>
+  <rect width="880" height="150" rx="12" fill="#0d1117" stroke="#30363d"/>
+  <g>
+    <rect class="b" x="24" y="40" width="186" height="70" rx="8"/><text class="h" x="117" y="70" text-anchor="middle">1 · Hash route</text><text class="s" x="117" y="92" text-anchor="middle">game · level · seed</text>
+    <rect class="b" x="240" y="40" width="186" height="70" rx="8"/><text class="h" x="333" y="70" text-anchor="middle">2 · Store</text><text class="s" x="333" y="92" text-anchor="middle">Zustand · seeded RNG</text>
+    <rect class="b" x="456" y="40" width="186" height="70" rx="8"/><text class="h" x="549" y="70" text-anchor="middle">3 · Rules</text><text class="s" x="549" y="92" text-anchor="middle">pure logic.ts</text>
+    <rect class="b" x="672" y="40" width="186" height="70" rx="8"/><text class="h" x="765" y="70" text-anchor="middle">4 · Screen</text><text class="s" x="765" y="92" text-anchor="middle">SVG/CSS · timers</text>
+  </g>
+  <path class="a" d="M210 75H236" marker-end="url(#m)"/><path class="a" d="M426 75H452" marker-end="url(#m)"/><path class="a" d="M642 75H668" marker-end="url(#m)"/>
+</svg>
