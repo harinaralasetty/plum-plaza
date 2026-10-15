@@ -6,6 +6,7 @@
 
 **Free, offline browser game collection built with TypeScript and React.** A memory tile-matching game, a conveyor-belt cake-order game and a colour deduction puzzle, each with three difficulty levels, seeded replays and hand-drawn SVG art.
 
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node 22.12+ (22.x)](https://img.shields.io/badge/Node-22.12%2B%20(22.x)-339933.svg)](package.json)
 [![TypeScript 5.9](https://img.shields.io/badge/TypeScript-5.9-3178C6.svg)](package.json)
 [![React 18](https://img.shields.io/badge/React-18-61DAFB.svg)](package.json)
@@ -163,4 +164,4 @@ Plum Plaza is an independent project. It is not affiliated with, endorsed by or 
 
 ## License
 
-No license file has been added yet, so default copyright applies: you may play the game and read the source, but reuse of the code needs the owner's permission.
+[MIT](LICENSE). The code and the original art and sound it generates are covered by the same license. Third-party npm packages keep their own licenses.
