@@ -79,6 +79,17 @@ CI runs portable checks on Ubuntu; macOS-only Safari E2E was run locally before 
 
 Final15-case ordered audit, final visual refinement, fresh-clone proof and publication passed. Game choices now use named original objects on native buttons; no gameplay mechanic was added or changed. Live AdGuard verification limits above continue to apply.
 
+## Code review follow-up — 2026-10-13
+
+| Check | Command | Exit code | Key output |
+|---|---|---|---|
+| Baseline | `npm run lint` | 1 | 15 errors, all in untracked `review-purble-place-29df145/` (separate CommonJS snapshot with its own tests); app source clean |
+| Failing test first | `npx vitest run tests/unit/pairs.test.ts` | 1 | `tileName` missing: revealed tiles were announced as internal ids (`normal-3, normal, cake`) |
+| Fixes | `tileName()` in `pairs/logic.ts`, used for the tile aria-label; snapshot folder added to ESLint ignores | 0 | |
+| After | `npm run lint && npm run typecheck && npm test && npm run build` on Node 26.9.0 | 0 each | 40 tests pass; JS gzip 61.85 kB |
+| Snapshot | `node --test tests/*.test.cjs` in `review-purble-place-29df145/Purble-Place-Web` | 0 | 34/34 pass; all referenced assets exist |
+| Serve | dev server on 5173 and `python3 -m http.server 8000` | 0 | HTTP 200 for both; servers stopped. Safari E2E and real-browser play of the snapshot were not rerun |
+
 ## Assumptions
 - Pairs timers are180s Intermediate and240s Advanced, per board.
 - Clock adds20s.

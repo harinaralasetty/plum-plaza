@@ -1,7 +1,7 @@
 import { PAIR_ART, UI } from '../../config/constants';
 import type { Level } from '../../config/constants';
 import { Button } from '../../ui/Button';
-import type { Tile } from './logic';
+import { tileName, type Tile } from './logic';
 const symbols = { joker: '✦', clock: '◷', chef: '♧', shuffle: '⇄', peek: '◎', star: '★' };
 export function TileFace({ tile, level }: { tile: Tile; level: Level }) {
   if (tile.kind !== 'normal') return <span className={`pair-special pair-${tile.kind}`}><span aria-hidden="true">{symbols[tile.kind]}</span><small>{tile.kind}</small></span>;
@@ -18,5 +18,5 @@ export function TileFace({ tile, level }: { tile: Tile; level: Level }) {
 export function PairTile({ tile, index, revealed, locked, level, onFlip }: { tile: Tile; index: number; revealed: boolean; locked: boolean; level: Level; onFlip: () => void }) {
   if (tile.matched) return <span className="pair-slot pair-removed" aria-hidden="true" style={{ minWidth: UI.minTarget, minHeight: UI.minTarget }}/>;
   if (tile.kind === 'star') return <span className="pair-slot pair-star" aria-label="Free star: clears last" style={{ minWidth: UI.minTarget, minHeight: UI.minTarget }}><TileFace tile={tile} level={level}/></span>;
-  return <Button className={`pair-tile ${revealed ? 'is-revealed' : 'is-hidden'}`} style={{ minWidth: UI.minTarget, minHeight: UI.minTarget, padding: 0 }} aria-label={revealed ? `${tile.pair}, ${tile.kind}${tile.cake ? ', cake' : ''}` : `Tile ${index + 1}`} aria-pressed={revealed} disabled={locked || revealed} onClick={onFlip}>{revealed ? <TileFace tile={tile} level={level}/> : <span aria-hidden="true" className="pair-back">❋</span>}</Button>;
+  return <Button className={`pair-tile ${revealed ? 'is-revealed' : 'is-hidden'}`} style={{ minWidth: UI.minTarget, minHeight: UI.minTarget, padding: 0 }} aria-label={revealed ? tileName(tile) : `Tile ${index + 1}`} aria-pressed={revealed} disabled={locked || revealed} onClick={onFlip}>{revealed ? <TileFace tile={tile} level={level}/> : <span aria-hidden="true" className="pair-back">❋</span>}</Button>;
 }

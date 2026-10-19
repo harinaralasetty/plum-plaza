@@ -77,6 +77,10 @@ export function nextBoard(state: PairsState, rng: Rng): PairsState {
   return { ...state, board: state.board + 1, tiles: boardTiles(state.level, rng), selected: [], pending: null,
     peekTokens: 0, seconds: PAIRS[state.level].seconds, status: 'playing' };
 }
+export function tileName(tile: Tile): string {
+  if (tile.kind !== 'normal') return tile.kind;
+  return `${tile.cake ? 'Cake ' : ''}${Number(tile.pair.split('-')[1]) + 1}`;
+}
 export function resultTitle(state: PairsState): 'Sprout' | 'Bloom' | 'Plum Master' {
   const ratio = state.turns / state.minimumTurns;
   return ratio <= RANK.bestRatio ? 'Plum Master' : ratio <= RANK.middleRatio ? 'Bloom' : 'Sprout';

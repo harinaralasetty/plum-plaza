@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { LEVELS, PAIRS, PAIRS_TIMING } from '../../src/config/constants';
 import { mulberry32, type Rng } from '../../src/core/rng';
-import { createGame, flip, resolveMismatch, peek, finishPeek, nextBoard, tick, resultTitle, type PairsState } from '../../src/games/pairs/logic';
+import { createGame, flip, resolveMismatch, peek, finishPeek, nextBoard, tick, resultTitle, tileName, type PairsState } from '../../src/games/pairs/logic';
 function match(state: PairsState, pair: string, rng: Rng): PairsState {
   const indexes = state.tiles.flatMap((tile, index) => !tile.matched && tile.pair === pair ? [index] : []);
   return indexes.length === 2 ? flip(flip(state, indexes[0], rng), indexes[1], rng) : state;
@@ -107,3 +107,15 @@ describe('pairs', () => {
 });
 
  it('minimum includes free pair clears by Chef and Joker',()=>{expect(createGame('beginner',mulberry32(1)).minimumTurns).toBe(12);expect(createGame('intermediate',mulberry32(1)).minimumTurns).toBe(34);expect(createGame('advanced',mulberry32(1)).minimumTurns).toBe(120);});
+
+describe('tile names for assistive technology', () => {
+  it('describe revealed tiles by their visible label, never internal ids', () => {
+    const tiles = createGame('advanced', mulberry32(1)).tiles;
+    const names = new Set(tiles.map(tileName));
+    expect(names).toContain('Cake 1');
+    expect(names).toContain('joker');
+    expect([...names].some(n => n.startsWith('normal'))).toBe(false);
+    const plain = tiles.find(t => t.kind === 'normal' && !t.cake)!;
+    expect(tileName(plain)).toBe(String(Number(plain.pair.split('-')[1]) + 1));
+  });
+});
